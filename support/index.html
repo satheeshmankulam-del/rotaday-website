@@ -13,98 +13,208 @@
 <meta property="og:url" content="https://rotawake.netlify.app/support/" />
 <meta property="og:image" content="https://rotawake.netlify.app/assets/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
-:root{color-scheme:dark;--bg:#10151C;--card:#182029;--line:#28333F;
- --ink:#E9EDF2;--dim:#B9C3CF;--mute:#697585;--teal:#2E9AAE;--amber:#E0A340}
+:root{color-scheme:dark;
+ /* Taken verbatim from the theme object T in App.jsx */
+ --bg:#10151C;--card:#182029;--card2:#212B36;--line:#28333F;--line-s:#3A4753;
+ --ink:#E9EDF2;--dim:#95A1B0;--mute:#697585;--teal:#2E9AAE;--teal-l:#4FBDD0;
+ /* PALETTE entries used by the default shift types */
+ --amber:#E0A340;--amber-l:#1A1206;--violet:#5B6BD6;--violet-l:#FFFFFF;
+ --eve:#2A9C8C;--eve-l:#04211D;--green:#4E9455}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--ink);line-height:1.65;
- font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:860px;margin:0 auto;padding:0 22px}
-a{color:var(--teal)}
-header{padding:30px 0 0}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;width:max-content}
-.brand span{font-size:19px;font-weight:500;color:var(--ink)}
-nav.top{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap}
-nav.top a{color:var(--mute);text-decoration:none;font-size:15px}
-nav.top a:hover,nav.top a[aria-current]{color:var(--ink)}
-h1{font-size:clamp(30px,6vw,46px);font-weight:500;letter-spacing:-0.8px;line-height:1.16;margin:0 0 16px}
-h2{font-size:24px;font-weight:500;letter-spacing:-0.3px;margin:0 0 24px}
-h3{font-size:17px;font-weight:600;margin:0 0 8px}
-p,li{color:var(--dim)}
-.lede{font-size:clamp(17px,2.4vw,20px);max-width:560px}
-section{padding-bottom:68px}
-.hero{padding:62px 0 58px;text-align:center}
-.hero .lede{margin:0 auto 34px}
-.cta{display:inline-block;background:var(--teal);color:#06222A;font-size:16px;font-weight:600;
- text-decoration:none;padding:14px 30px;border-radius:10px}
-.cta:active{opacity:.75}
-.cta-note{color:var(--mute);font-size:14px;margin-top:15px}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
-.card p{font-size:15px}
-.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:9px;vertical-align:middle}
-.band{background:var(--card);border:1px solid var(--line);border-radius:16px;
- padding:38px 30px;text-align:center;margin-bottom:68px}
-.band p{max-width:460px;margin:0 auto}
-.price{color:var(--amber);font-weight:600}
-ul{padding-left:20px}li{margin-bottom:8px}
-.qa{border-bottom:1px solid var(--line);padding:22px 0}
-.qa:last-child{border-bottom:none}
-.qa h3{color:var(--ink);font-size:18px;font-weight:600;margin-bottom:8px}
-.callout{background:var(--card);border:1px solid var(--line);border-radius:12px;
- padding:20px 22px;margin:26px 0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);line-height:1.6;
+ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ -webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+a{color:var(--teal-l);text-decoration:none}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(16,21,28,.86);
+ backdrop-filter:blur(14px);border-bottom:1px solid rgba(40,51,63,.7)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand span{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{color:var(--dim);font-size:15.5px;font-weight:500}
+.nav a:hover,.nav a[aria-current]{color:var(--ink)}
+.pill{background:var(--teal);color:#042029;font-weight:650;font-size:15.5px;
+ padding:11px 24px;border-radius:999px}
+.pill:hover{background:var(--teal-l)}
+.burger{display:none}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1fr 408px;gap:44px;align-items:center;
+ padding:74px 0 86px}
+.hero h1{font-size:clamp(38px,4.6vw,54px);font-weight:700;line-height:1.08;
+ letter-spacing:-.033em;margin-bottom:26px}
+.hero .lede{color:var(--dim);font-size:19px;line-height:1.62;max-width:500px;margin-bottom:38px}
+.get{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:13px;background:#000;border:1px solid #2E3845;
+ border-radius:10px;padding:11px 22px 11px 18px}
+.badge .bt{display:block;color:#fff;font-size:10.5px;letter-spacing:.09em;line-height:1.3}
+.badge .bb{display:block;color:#fff;font-size:19px;font-weight:600;line-height:1.15;
+ letter-spacing:-.01em}
+.ticks{display:flex;gap:20px;flex-wrap:wrap}
+.ticks span{display:flex;align-items:center;gap:7px;color:var(--dim);font-size:15px}
+.ticks svg{flex:none}
+
+/* ---------- phone: every length is the real value from S in App.jsx ---------- */
+.phone{width:408px;background:var(--bg);border:9px solid #202A36;border-radius:40px;
+ overflow:hidden;box-shadow:0 34px 80px rgba(0,0,0,.6);display:flex;flex-direction:column}
+.sc{display:flex;flex-direction:column;color:var(--ink);font-size:14px}
+.psb{display:flex;justify-content:space-between;color:var(--mute);font-size:11px;
+ padding:8px 16px 0}
+.appBarRow{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
+ padding:10px 14px 8px}
+.brandLeft{display:flex;align-items:center;gap:9px}
+.brandName{font-size:16px;font-weight:500;letter-spacing:-.2px}
+.iconBtn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--dim)}
+.ctxRow{min-height:50px;display:flex;align-items:center;justify-content:center;padding:4px 10px 10px}
+.monthNav{display:flex;align-items:center;gap:2px}
+.navBtn{color:var(--dim);font-size:26px;width:44px;height:44px;display:flex;
+ align-items:center;justify-content:center;line-height:1}
+.monthPill{display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:0 12px;
+ border-radius:999px;border:1px solid var(--line-s);color:var(--ink);font-size:14px;font-weight:500}
+.nextCard{background:var(--card2);border-radius:10px;margin:0 18px 16px;padding:14px 16px}
+.nextLabel{font-size:11px;color:var(--mute);margin-bottom:8px}
+.nextRow{display:flex;align-items:center;gap:10px}
+.nextTitle{font-size:15px;font-weight:500}
+.nextSub{font-size:13px;color:var(--dim);margin-top:8px}
+.chipLg{width:34px;height:34px;border-radius:5px;display:flex;align-items:center;
+ justify-content:center;font-size:15px;font-weight:500;flex-shrink:0}
+.weekRow{display:grid;grid-template-columns:repeat(7,1fr);padding:0 12px}
+.weekLabel{text-align:center;font-size:11px;color:var(--mute);padding-bottom:8px}
+.rule{height:1px;background:var(--line);margin:0 12px}
+.pgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px 12px}
+.cell{height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ position:relative;border-radius:8px}
+.cell.today{border:2px solid var(--teal)}
+.dayNum{font-size:14px;font-variant-numeric:tabular-nums}
+.chip{width:24px;height:18px;border-radius:4px;margin-top:3px;display:flex;align-items:center;
+ justify-content:center;font-size:10px;font-weight:500}
+.chipEmpty{width:24px;height:18px;margin-top:3px}
+.summary{text-align:center;font-size:12px;color:var(--mute);padding:14px 0}
+.tabBar{flex-shrink:0;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);
+ border-top:1px solid var(--line);padding:8px 0}
+.tabItem{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;
+ justify-content:center;color:var(--mute)}
+.tabItem.on{color:var(--teal)}
+.tabPill{width:56px;height:30px;border-radius:999px;display:flex;align-items:center;
+ justify-content:center}
+.tabItem.on .tabPill{background:rgba(46,154,174,0.18)}
+.tabLabel{font-size:12px}
+
+/* ---- popout: a fragment lifted out of the phone, as on the store shots ---- */
+.stage{position:relative;flex:none;width:408px}
+.popout{position:absolute;top:126px;left:-16px;right:-16px;background:var(--card);
+ border:2px solid var(--teal);border-radius:18px;padding:18px 20px;
+ box-shadow:0 22px 55px rgba(0,0,0,.70)}
+.po-next .nextLabel{font-size:13px}
+.po-next .nextTitle{font-size:19px}
+.po-next .nextSub{font-size:15px}
+.po-next .chipLg{width:42px;height:42px;font-size:19px;border-radius:7px}
+
+/* ---------- sections ---------- */
+section{padding-bottom:96px}
+h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;letter-spacing:-.025em;margin-bottom:14px}
+.sub{color:var(--dim);font-size:17.5px;max-width:580px;margin-bottom:38px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+.card h3{font-size:17.5px;font-weight:650;margin-bottom:9px;display:flex;align-items:center;gap:10px}
+.card p{color:var(--dim);font-size:15.5px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.band{background:linear-gradient(145deg,#15202B,#121A23);border:1px solid var(--line);
+ border-radius:22px;padding:62px 40px;text-align:center;margin-bottom:96px}
+.band h2{margin-bottom:16px}
+.band p{color:var(--dim);font-size:17.5px;max-width:520px;margin:0 auto}
+.plist{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.pitem{display:flex;gap:13px;align-items:flex-start;background:var(--card);
+ border:1px solid var(--line);border-radius:13px;padding:19px 21px}
+.pitem svg{flex:none;margin-top:3px}
+.pitem span{color:var(--dim);font-size:15.5px}
+.price-note{color:var(--mute);font-size:15.5px;margin-top:22px}
+.amber{color:var(--amber)}
+
+/* ---------- article pages ---------- */
+.page{padding:64px 0 20px;max-width:760px}
+.page h1{font-size:clamp(32px,4.4vw,46px);font-weight:700;letter-spacing:-.028em;
+ line-height:1.14;margin-bottom:18px}
+.page .lede{color:var(--dim);font-size:18.5px;max-width:620px}
+.page h2{font-size:21px;font-weight:650;margin:38px 0 10px;letter-spacing:-.01em}
+.page p,.page li{color:var(--dim);font-size:16.5px}
+.page ul{padding-left:21px;margin-top:10px}.page li{margin-bottom:9px}
+.updated{color:var(--mute);font-size:14.5px;margin-bottom:34px}
+.callout{background:var(--card);border:1px solid var(--line);border-radius:14px;
+ padding:22px 24px;margin:28px 0}
 .callout p{color:var(--ink);margin:0}
-.updated{color:var(--mute);font-size:14px;margin-bottom:38px}
-footer{border-top:1px solid var(--line);padding:30px 0 58px;color:var(--mute);font-size:14px;
- display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between}
-footer a{color:var(--mute)}
-.center{text-align:center}
+.qa{border-bottom:1px solid var(--line);padding:24px 0}
+.qa:last-child{border-bottom:none}
+.qa h3{color:var(--ink);font-size:18px;font-weight:650;margin-bottom:9px}
+.qa p{color:var(--dim);font-size:16.5px}
+.cta-row{text-align:center;padding:14px 0 40px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:38px 0 70px;margin-top:20px}
+.ft{display:flex;flex-wrap:wrap;gap:16px 34px;justify-content:space-between;align-items:center}
+.ft a{color:var(--mute);font-size:14.5px}
+.ft a:hover{color:var(--dim)}
+.ft-l{color:var(--mute);font-size:14.5px}
+.ft-n{display:flex;gap:26px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .wrap{padding:0 22px}
+  .hero{grid-template-columns:1fr;gap:52px;padding:62px 0 76px;text-align:center}
+  .hero .lede{margin-left:auto;margin-right:auto}
+  .get{justify-content:center}
+  .ticks{justify-content:center}
+  .stage{width:min(408px,100%);margin:0 auto}
+  .phone{width:100%}
+  .popout{left:-8px;right:-8px}
+  .nav{display:none}
+  .band{padding:48px 26px}
+  section{padding-bottom:72px}
+}
 </style>
 </head>
 <body>
+<div class="hdr"><div class="wrap"><div class="hdr-in">
+  <a class="brand" href="/"><svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="16" fill="#212B36"/>
+<circle cx="32" cy="15" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="19.98" r="4.5" fill="#E0A340"/>
+<circle cx="49" cy="32" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="44.02" r="4.5" fill="#E0A340"/>
+<circle cx="32" cy="49" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="44.02" r="4.5" fill="#3A4753"/>
+<circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
+<circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></a>
+  <nav class="nav"><a href="/#features">Features</a><a href="/faq/">FAQ</a><a href="/support/" aria-current='page'>Support</a><a class="pill" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Get the app</a></nav>
+</div></div></div>
 <div class="wrap">
-<header>
-  <a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
- <rect width="64" height="64" rx="16" fill="#212B36"/>
- <circle cx="32" cy="15" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="19.98" r="4.5" fill="#E0A340"/>
- <circle cx="49" cy="32" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="44.02" r="4.5" fill="#E0A340"/>
- <circle cx="32" cy="49" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="44.02" r="4.5" fill="#3A4753"/>
- <circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
- <circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></a>
-  <nav class="top"><a href="/">Home</a><a href="/faq/">FAQ</a><a href="/support/" aria-current='page'>Support</a><a href="/privacy/">Privacy</a></nav>
-</header>
-
-<section style="padding-top:48px">
-  <h1>Support</h1>
-  <p class="lede">A real person reads every message. One developer, so give it a day or two.</p>
-  <div class="callout"><p>Email <a href="mailto:satheeshmankulam@gmail.com">satheeshmankulam@gmail.com</a></p></div>
-
-  <h2 style="margin-top:46px">Before you write</h2>
-  <p>These three cover most of what comes in:</p>
-
-  <div class="qa"><h3>Reminders arrive late or not at all</h3>
-    <p>Android battery optimisation. Open Settings on your phone, find RotaWake under Apps, set battery usage to <b>Unrestricted</b>, and allow exact alarms if your phone asks. Samsung, Xiaomi, Oppo, Vivo and OnePlus are the strictest.</p></div>
-
-  <div class="qa"><h3>Pro is locked after reinstalling or changing phone</h3>
-    <p>Settings, then <b>Restore purchase</b>, signed in to the Google account you bought it with. If it still does not unlock, send me the order number from your Google Play receipt.</p></div>
-
-  <div class="qa"><h3>My pattern starts on the wrong day</h3>
-    <p>Open the pattern and tap the day of the cycle you are on <i>today</i>. That one tap re-anchors the whole rotation.</p></div>
-
-  <h2 style="margin-top:46px">Useful when reporting a problem</h2>
-  <ul>
-    <li>Your phone make and model</li>
-    <li>Your Android version</li>
-    <li>The app version, shown at the bottom of the About screen</li>
-    <li>What you expected, and what happened instead</li>
-  </ul>
-</section>
-
-<footer>
-  <span>RotaWake is made by an independent developer, not a company.</span>
-  <span><a href="/privacy/">Privacy</a> &middot; <a href="/support/">Support</a></span>
-</footer>
+<div class="page">
+<h1>Support</h1>
+<p class="lede">One developer builds and answers for RotaWake, so give it a day or two &mdash; but every message is read.</p>
+<div class="callout"><p>Email <a href="mailto:satheeshmankulam@gmail.com">satheeshmankulam@gmail.com</a></p></div>
+<h2 style="margin-top:46px">Before you write</h2>
+<p>These three cover most of what comes in.</p>
+<div style="margin-top:14px">
+<div class="qa"><h3>Reminders arrive late, or not at all</h3>
+<p>Android battery optimisation. Open Settings on your phone, find RotaWake under Apps, set battery usage to <b>Unrestricted</b>, and allow exact alarms if asked. Samsung, Xiaomi, Oppo, Vivo and OnePlus are the strictest about this.</p></div>
+<div class="qa"><h3>Pro is locked after reinstalling or changing phone</h3>
+<p>Settings, then <b>Restore purchase</b>, signed in to the Google account you bought it with. If it still does not unlock, send me the order number from your Google Play receipt.</p></div>
+<div class="qa"><h3>My pattern starts on the wrong day</h3>
+<p>Open the pattern and tap the day of the cycle you are on <i>today</i>. That one tap re-anchors the whole rotation, forwards and backwards.</p></div>
 </div>
-</body>
-</html>
+<h2 style="margin-top:46px">Useful when reporting a problem</h2>
+<ul><li>Your phone make and model</li><li>Your Android version</li>
+<li>The app version, shown at the bottom of the About screen</li>
+<li>What you expected, and what happened instead</li></ul>
+</div>
+<footer><div class="ft">
+  <span class="ft-l">RotaWake is made by an independent developer, not a company.</span>
+  <span class="ft-n"><a href="/faq/">FAQ</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></span>
+</div></footer>
+</div>
+</body></html>
