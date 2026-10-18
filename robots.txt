@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rotaday.netlify.app/sitemap.xml
+Sitemap: https://rotawake.netlify.app/sitemap.xml

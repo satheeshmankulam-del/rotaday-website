@@ -1,75 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Support – Rotaday</title>
-<meta name="description" content="Get help with Rotaday: backups, data deletion and contacting the developer.">
-<link rel="canonical" href="https://rotaday.netlify.app/support/">
-<meta name="theme-color" content="#F7FAFD" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0D1520" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Rotaday">
-<meta property="og:title" content="Support – Rotaday">
-<meta property="og:description" content="Get help with Rotaday: backups, data deletion and contacting the developer.">
-<meta property="og:url" content="https://rotaday.netlify.app/support/">
-<meta property="og:image" content="https://rotaday.netlify.app/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="/assets/site.css">
-<script src="/assets/analytics.js" defer></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Support — RotaWake</title>
+<meta name="description" content="Get help with RotaWake: late reminders, restoring a Pro purchase, pattern start days, and how to report a problem." />
+<meta name="theme-color" content="#10151C" />
+<link rel="canonical" href="https://rotawake.netlify.app/support/" />
+<meta property="og:title" content="Support — RotaWake" />
+<meta property="og:description" content="Get help with RotaWake: late reminders, restoring a Pro purchase, pattern start days, and how to report a problem." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rotawake.netlify.app/support/" />
+<meta property="og:image" content="https://rotawake.netlify.app/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
 
+<style>
+:root{color-scheme:dark;--bg:#10151C;--card:#182029;--line:#28333F;
+ --ink:#E9EDF2;--dim:#B9C3CF;--mute:#697585;--teal:#2E9AAE;--amber:#E0A340}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--ink);line-height:1.65;
+ font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+a{color:var(--teal)}
+header{padding:30px 0 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;width:max-content}
+.brand span{font-size:19px;font-weight:500;color:var(--ink)}
+nav.top{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap}
+nav.top a{color:var(--mute);text-decoration:none;font-size:15px}
+nav.top a:hover,nav.top a[aria-current]{color:var(--ink)}
+h1{font-size:clamp(30px,6vw,46px);font-weight:500;letter-spacing:-0.8px;line-height:1.16;margin:0 0 16px}
+h2{font-size:24px;font-weight:500;letter-spacing:-0.3px;margin:0 0 24px}
+h3{font-size:17px;font-weight:600;margin:0 0 8px}
+p,li{color:var(--dim)}
+.lede{font-size:clamp(17px,2.4vw,20px);max-width:560px}
+section{padding-bottom:68px}
+.hero{padding:62px 0 58px;text-align:center}
+.hero .lede{margin:0 auto 34px}
+.cta{display:inline-block;background:var(--teal);color:#06222A;font-size:16px;font-weight:600;
+ text-decoration:none;padding:14px 30px;border-radius:10px}
+.cta:active{opacity:.75}
+.cta-note{color:var(--mute);font-size:14px;margin-top:15px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.card p{font-size:15px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:9px;vertical-align:middle}
+.band{background:var(--card);border:1px solid var(--line);border-radius:16px;
+ padding:38px 30px;text-align:center;margin-bottom:68px}
+.band p{max-width:460px;margin:0 auto}
+.price{color:var(--amber);font-weight:600}
+ul{padding-left:20px}li{margin-bottom:8px}
+.qa{border-bottom:1px solid var(--line);padding:22px 0}
+.qa:last-child{border-bottom:none}
+.qa h3{color:var(--ink);font-size:18px;font-weight:600;margin-bottom:8px}
+.callout{background:var(--card);border:1px solid var(--line);border-radius:12px;
+ padding:20px 22px;margin:26px 0}
+.callout p{color:var(--ink);margin:0}
+.updated{color:var(--mute);font-size:14px;margin-bottom:38px}
+footer{border-top:1px solid var(--line);padding:30px 0 58px;color:var(--mute);font-size:14px;
+ display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between}
+footer a{color:var(--mute)}
+.center{text-align:center}
+</style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="wrap header-row">
-    <a class="brand" href="/"><img src="/assets/logo-96.png" alt="" width="30" height="30">Rotaday</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="sr-only">Menu</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-    </button>
-    <nav class="nav" id="site-nav" aria-label="Main"><a href="/#features">Features</a><a href="/faq/">FAQ</a><a href="/support/" aria-current="page">Support</a>
-      <a class="btn" href="https://play.google.com/store/apps/details?id=com.satheesh.roster" rel="noopener">Get the app</a>
-    </nav>
-  </div>
+<div class="wrap">
+<header>
+  <a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+ <rect width="64" height="64" rx="16" fill="#212B36"/>
+ <circle cx="32" cy="15" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="19.98" r="4.5" fill="#E0A340"/>
+ <circle cx="49" cy="32" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="44.02" r="4.5" fill="#E0A340"/>
+ <circle cx="32" cy="49" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="44.02" r="4.5" fill="#3A4753"/>
+ <circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
+ <circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></a>
+  <nav class="top"><a href="/">Home</a><a href="/faq/">FAQ</a><a href="/support/" aria-current='page'>Support</a><a href="/privacy/">Privacy</a></nav>
 </header>
-<main id="main"><div class="narrow page-head"><h1>Support</h1>
-  <p>Most things are fixed in a few taps. If you're still stuck, email the developer.</p>
-  <ul class="toc"><li><a href="#setup">Setting up your rota</a></li><li><a href="#reminders">Reminders aren't arriving</a></li><li><a href="#backup">Back up and move to a new phone</a></li><li><a href="#delete">Delete your data</a></li><li><a href="#contact">Contact</a></li></ul></div>
-  <article class="narrow prose"><h2 id="setup">Setting up your rota</h2><p>Open <strong>Settings</strong>, then <strong>Patterns</strong>, and pick the rotation you work. Then open <strong>Rosters</strong> and set the date you're currently on in the cycle. The calendar fills in from there.</p><p>If the shifts look shifted by a day or two, adjust which day of the cycle today is, and the whole calendar moves with it.</p><h2 id="reminders">Reminders aren't arriving</h2><p>Turn reminders on in <strong>Settings</strong> and choose how far ahead you want them, from 30 minutes to 4 hours.</p><p>If they still don't arrive, Android may be limiting the app in the background. Allow notifications for Rotaday, set its battery use to unrestricted, and on phones from brands such as Xiaomi, Oppo, Vivo, Realme or OnePlus, turn on Auto-start.</p><h2 id="backup">Back up and move to a new phone</h2><ol><li>Open <strong>Settings</strong> and tap <strong>Back up to a file</strong>. Android's share sheet lets you save it to Drive, email it to yourself or keep it on the phone.</li><li>On the new phone, install Rotaday and tap <strong>Restore from a file</strong>.</li></ol><div class="note"><p><strong>Before you uninstall:</strong> uninstalling erases your rosters, changes and notes permanently. Back up first.</p></div><h2 id="delete">Delete your data</h2><p>Rotaday has no account and no servers, so everything is on your phone.</p><p>Open <strong>Settings</strong> and tap <strong>Reset everything</strong> in the Danger zone, or uninstall the app. Both permanently erase your rosters, changes, notes and settings.</p>
-  <h2 id="contact">Contact</h2>
-  <p>To help with your question, include your phone model, Android version and the Rotaday version shown in the app.</p>
-  <div class="contact-card"><div><h2>Email support</h2><p>Questions, bugs or ideas for Rotaday.</p></div>
-  <a class="btn" href="mailto:appfeedback.satheesh@gmail.com?subject=Rotaday%20support">appfeedback.satheesh@gmail.com</a></div>
-  </article></main><footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <a class="brand" href="/"><img src="/assets/logo-96.png" alt="" width="30" height="30">Rotaday</a>
-        <p class="about" style="margin-top:12px">Shift rota planner for rotating workers on Android. Made with care for people who value simplicity and privacy.</p>
-      </div>
-      <div><h2>App</h2><ul>
-        <li><a href="/#features">Features</a></li>
-        <li><a href="/4-on-4-off-shift-calendar-app/">Guide</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.satheesh.roster" rel="noopener">Google Play</a></li>
-      </ul></div>
-      <div><h2>Help</h2><ul>
-        <li><a href="/faq/">FAQ</a></li>
-        <li><a href="/support/">Support</a></li>
-        <li><a href="/privacy/">Privacy policy</a></li>
-      </ul></div>
-      <div><h2>More apps</h2><ul><li><a href="https://play.google.com/store/apps/details?id=com.familydose.app" rel="noopener">FamilyDose</a></li><li><a href="https://play.google.com/store/apps/details?id=com.satheesh.spendcast" rel="noopener">SpendCast</a></li>
-        <li><a href="https://satheeshmankulam.com" rel="noopener">satheeshmankulam.com</a></li>
-      </ul></div>
-    </div>
-    <p class="footer-base">&copy; <span data-year>2026</span> Satheesh Mankulam. Rotaday is free to use, with an optional one-time Pro unlock. No subscription.</p>
-  </div>
+
+<section style="padding-top:48px">
+  <h1>Support</h1>
+  <p class="lede">A real person reads every message. One developer, so give it a day or two.</p>
+  <div class="callout"><p>Email <a href="mailto:satheeshmankulam@gmail.com">satheeshmankulam@gmail.com</a></p></div>
+
+  <h2 style="margin-top:46px">Before you write</h2>
+  <p>These three cover most of what comes in:</p>
+
+  <div class="qa"><h3>Reminders arrive late or not at all</h3>
+    <p>Android battery optimisation. Open Settings on your phone, find RotaWake under Apps, set battery usage to <b>Unrestricted</b>, and allow exact alarms if your phone asks. Samsung, Xiaomi, Oppo, Vivo and OnePlus are the strictest.</p></div>
+
+  <div class="qa"><h3>Pro is locked after reinstalling or changing phone</h3>
+    <p>Settings, then <b>Restore purchase</b>, signed in to the Google account you bought it with. If it still does not unlock, send me the order number from your Google Play receipt.</p></div>
+
+  <div class="qa"><h3>My pattern starts on the wrong day</h3>
+    <p>Open the pattern and tap the day of the cycle you are on <i>today</i>. That one tap re-anchors the whole rotation.</p></div>
+
+  <h2 style="margin-top:46px">Useful when reporting a problem</h2>
+  <ul>
+    <li>Your phone make and model</li>
+    <li>Your Android version</li>
+    <li>The app version, shown at the bottom of the About screen</li>
+    <li>What you expected, and what happened instead</li>
+  </ul>
+</section>
+
+<footer>
+  <span>RotaWake is made by an independent developer, not a company.</span>
+  <span><a href="/privacy/">Privacy</a> &middot; <a href="/support/">Support</a></span>
 </footer>
-<script src="/assets/site.js" defer></script>
+</div>
 </body>
 </html>

@@ -1,85 +1,121 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A 4 on 4 off shift calendar app for rotating shifts – Rotaday</title>
-<meta name="description" content="Rotaday turns your shift pattern into a calendar that runs years ahead: 4 on 4 off, Panama, days and nights. Reminders, hours, overtime and pay. Offline, no account.">
-<link rel="canonical" href="https://rotaday.netlify.app/4-on-4-off-shift-calendar-app/">
-<meta name="theme-color" content="#F7FAFD" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0D1520" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Rotaday">
-<meta property="og:title" content="A 4 on 4 off shift calendar app for rotating shifts – Rotaday">
-<meta property="og:description" content="Rotaday turns your shift pattern into a calendar that runs years ahead: 4 on 4 off, Panama, days and nights. Reminders, hours, overtime and pay. Offline, no account.">
-<meta property="og:url" content="https://rotaday.netlify.app/4-on-4-off-shift-calendar-app/">
-<meta property="og:image" content="https://rotaday.netlify.app/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="/assets/site.css">
-<script src="/assets/analytics.js" defer></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which shift patterns are built in?", "acceptedAnswer": {"@type": "Answer", "text": "4 on 4 off, Panama (2-2-3), four days then four nights, and Monday to Friday. You can also build a cycle of any length yourself."}}, {"@type": "Question", "name": "What if I swap a shift with a colleague?", "acceptedAnswer": {"@type": "Answer", "text": "Tap that date and pick a different shift type, or mark it off. Only that day changes; the pattern carries on."}}, {"@type": "Question", "name": "What happens when my rotation changes?", "acceptedAnswer": {"@type": "Answer", "text": "Add a new roster from the date the change starts. Earlier months keep showing the old pattern, so your history stays correct."}}, {"@type": "Question", "name": "Is Rotaday free?", "acceptedAnswer": {"@type": "Answer", "text": "The app is free to use. Reports, which cover hours, overtime and earnings, are part of a one-time Pro unlock, with no subscription."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "A shift calendar for 4 on 4 off and other rotas", "description": "Rotaday turns your shift pattern into a calendar that runs years ahead: 4 on 4 off, Panama, days and nights. Reminders, hours, overtime and pay. Offline, no account.", "dateModified": "2026-09-18", "mainEntityOfPage": "https://rotaday.netlify.app/4-on-4-off-shift-calendar-app/", "author": {"@type": "Person", "name": "Satheesh Mankulam", "url": "https://satheeshmankulam.com"}}</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>4 on 4 off shift calendar app — RotaWake</title>
+<meta name="description" content="A 4 on 4 off shift calendar that fills itself in. Set the pattern once and see every shift for the next year. Free, offline, no account." />
+<meta name="theme-color" content="#10151C" />
+<link rel="canonical" href="https://rotawake.netlify.app/4-on-4-off-shift-calendar-app/" />
+<meta property="og:title" content="4 on 4 off shift calendar app — RotaWake" />
+<meta property="og:description" content="A 4 on 4 off shift calendar that fills itself in. Set the pattern once and see every shift for the next year. Free, offline, no account." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rotawake.netlify.app/4-on-4-off-shift-calendar-app/" />
+<meta property="og:image" content="https://rotawake.netlify.app/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<style>
+:root{color-scheme:dark;--bg:#10151C;--card:#182029;--line:#28333F;
+ --ink:#E9EDF2;--dim:#B9C3CF;--mute:#697585;--teal:#2E9AAE;--amber:#E0A340}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--ink);line-height:1.65;
+ font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+a{color:var(--teal)}
+header{padding:30px 0 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;width:max-content}
+.brand span{font-size:19px;font-weight:500;color:var(--ink)}
+nav.top{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap}
+nav.top a{color:var(--mute);text-decoration:none;font-size:15px}
+nav.top a:hover,nav.top a[aria-current]{color:var(--ink)}
+h1{font-size:clamp(30px,6vw,46px);font-weight:500;letter-spacing:-0.8px;line-height:1.16;margin:0 0 16px}
+h2{font-size:24px;font-weight:500;letter-spacing:-0.3px;margin:0 0 24px}
+h3{font-size:17px;font-weight:600;margin:0 0 8px}
+p,li{color:var(--dim)}
+.lede{font-size:clamp(17px,2.4vw,20px);max-width:560px}
+section{padding-bottom:68px}
+.hero{padding:62px 0 58px;text-align:center}
+.hero .lede{margin:0 auto 34px}
+.cta{display:inline-block;background:var(--teal);color:#06222A;font-size:16px;font-weight:600;
+ text-decoration:none;padding:14px 30px;border-radius:10px}
+.cta:active{opacity:.75}
+.cta-note{color:var(--mute);font-size:14px;margin-top:15px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.card p{font-size:15px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:9px;vertical-align:middle}
+.band{background:var(--card);border:1px solid var(--line);border-radius:16px;
+ padding:38px 30px;text-align:center;margin-bottom:68px}
+.band p{max-width:460px;margin:0 auto}
+.price{color:var(--amber);font-weight:600}
+ul{padding-left:20px}li{margin-bottom:8px}
+.qa{border-bottom:1px solid var(--line);padding:22px 0}
+.qa:last-child{border-bottom:none}
+.qa h3{color:var(--ink);font-size:18px;font-weight:600;margin-bottom:8px}
+.callout{background:var(--card);border:1px solid var(--line);border-radius:12px;
+ padding:20px 22px;margin:26px 0}
+.callout p{color:var(--ink);margin:0}
+.updated{color:var(--mute);font-size:14px;margin-bottom:38px}
+footer{border-top:1px solid var(--line);padding:30px 0 58px;color:var(--mute);font-size:14px;
+ display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between}
+footer a{color:var(--mute)}
+.center{text-align:center}
+</style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="wrap header-row">
-    <a class="brand" href="/"><img src="/assets/logo-96.png" alt="" width="30" height="30">Rotaday</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="sr-only">Menu</span>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-    </button>
-    <nav class="nav" id="site-nav" aria-label="Main"><a href="/#features">Features</a><a href="/faq/">FAQ</a><a href="/support/">Support</a>
-      <a class="btn" href="https://play.google.com/store/apps/details?id=com.satheesh.roster" rel="noopener">Get the app</a>
-    </nav>
-  </div>
+<div class="wrap">
+<header>
+  <a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+ <rect width="64" height="64" rx="16" fill="#212B36"/>
+ <circle cx="32" cy="15" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="19.98" r="4.5" fill="#E0A340"/>
+ <circle cx="49" cy="32" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="44.02" r="4.5" fill="#E0A340"/>
+ <circle cx="32" cy="49" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="44.02" r="4.5" fill="#3A4753"/>
+ <circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
+ <circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></a>
+  <nav class="top"><a href="/">Home</a><a href="/faq/">FAQ</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></nav>
 </header>
-<main id="main">
-  <article>
-    <div class="narrow page-head">
-      <h1>A shift calendar for 4 on 4 off and other rotas</h1>
-      <p class="lead-answer">Rotaday takes your rotation, such as 4 on 4 off, Panama or four days then four nights, and fills in every future date for you. No more counting days on a paper calendar or copying the rota into a phone calendar each month.</p>
-      <p class="meta">Updated September 2026</p>
-    </div>
-    <div class="narrow prose">
-      <h2>Why rotating shifts are hard to keep track of</h2><p>A rota that repeats every eight, twelve or fourteen days never lines up with the week. Which Saturday you're off changes each month, and the printed rota often covers only a few weeks. Planning anything two months out means counting cycles by hand.</p><h2>How Rotaday works</h2><ul><li><strong>Pick your pattern</strong> from the built-in ones, or build your own cycle of any length.</li><li><strong>Set day one</strong> by telling the app which date you're on in the cycle.</li><li><strong>Every future date fills in</strong> from there, as far ahead as you want to look.</li><li><strong>Swap a single day</strong> when you cover for someone, without breaking the pattern.</li><li><strong>Add a roster</strong> when you change job or rotation, and earlier months keep the old one.</li></ul><h2>What else it tracks</h2><p>Each shift type carries its own start, end, break and hourly rate, so Rotaday can total your hours, flag anything over your contracted week as overtime, and estimate earnings by shift type. A reminder can arrive 30 minutes to 4 hours before a shift starts, and a month can be exported as CSV or pushed to your phone's calendar.</p>
-      <h2>What to check</h2>
-      <div class="table-wrap"><table class="checklist"><tbody><tr><th scope="row">Built-in patterns</th><td>4 on 4 off, Panama 2-2-3, 4 days 4 nights, Mon to Fri</td></tr><tr><th scope="row">Custom cycles</th><td>Any length</td></tr><tr><th scope="row">Works without internet</th><td>Yes</td></tr><tr><th scope="row">Account or sign-up</th><td>Not needed</td></tr><tr><th scope="row">Hours, overtime and pay</th><td>Yes, in Pro</td></tr><tr><th scope="row">Price</th><td>Free, with an optional one-time Pro unlock</td></tr></tbody></table></div>
-      <h2>Questions</h2>
-      <div class="faq"><details><summary>Which shift patterns are built in?</summary><div class="answer"><p>4 on 4 off, Panama (2-2-3), four days then four nights, and Monday to Friday. You can also build a cycle of any length yourself.</p></div></details><details><summary>What if I swap a shift with a colleague?</summary><div class="answer"><p>Tap that date and pick a different shift type, or mark it off. Only that day changes; the pattern carries on.</p></div></details><details><summary>What happens when my rotation changes?</summary><div class="answer"><p>Add a new roster from the date the change starts. Earlier months keep showing the old pattern, so your history stays correct.</p></div></details><details><summary>Is Rotaday free?</summary><div class="answer"><p>The app is free to use. Reports, which cover hours, overtime and earnings, are part of a one-time Pro unlock, with no subscription.</p></div></details></div>
-      <div class="contact-card"><div><h2>Try it free</h2><p>Available on Google Play for Android.</p></div>
-      <a class="btn" href="https://play.google.com/store/apps/details?id=com.satheesh.roster" rel="noopener">Get the app</a></div>
-    </div>
-  </article>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <a class="brand" href="/"><img src="/assets/logo-96.png" alt="" width="30" height="30">Rotaday</a>
-        <p class="about" style="margin-top:12px">Shift rota planner for rotating workers on Android. Made with care for people who value simplicity and privacy.</p>
-      </div>
-      <div><h2>App</h2><ul>
-        <li><a href="/#features">Features</a></li>
-        <li><a href="/4-on-4-off-shift-calendar-app/">Guide</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.satheesh.roster" rel="noopener">Google Play</a></li>
-      </ul></div>
-      <div><h2>Help</h2><ul>
-        <li><a href="/faq/">FAQ</a></li>
-        <li><a href="/support/">Support</a></li>
-        <li><a href="/privacy/">Privacy policy</a></li>
-      </ul></div>
-      <div><h2>More apps</h2><ul><li><a href="https://play.google.com/store/apps/details?id=com.familydose.app" rel="noopener">FamilyDose</a></li><li><a href="https://play.google.com/store/apps/details?id=com.satheesh.spendcast" rel="noopener">SpendCast</a></li>
-        <li><a href="https://satheeshmankulam.com" rel="noopener">satheeshmankulam.com</a></li>
-      </ul></div>
-    </div>
-    <p class="footer-base">&copy; <span data-year>2026</span> Satheesh Mankulam. Rotaday is free to use, with an optional one-time Pro unlock. No subscription.</p>
+
+<section style="padding-top:48px">
+  <h1>A 4 on 4 off shift calendar that fills itself in</h1>
+  <p class="lede">Set the pattern once, tap which day of the cycle you are on today, and every 4 on 4 off shift for the next year appears on your calendar.</p>
+  <p style="margin-top:28px"><a class="cta" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Get RotaWake free</a></p>
+</section>
+
+<section>
+  <h2>What 4 on 4 off means</h2>
+  <p>Four days on, four days off, repeating on an eight-day cycle. Because eight does not divide into seven, your working days drift across the week &mdash; this week you work the weekend, in four weeks you do not. That is exactly why it is painful to track in a normal calendar, and why typing it in by hand stops being worth it after a month or two.</p>
+  <p style="margin-top:14px">Many employers run it as four day shifts, four off, four night shifts, four off &mdash; a sixteen-day cycle. RotaWake handles both, and any other cycle length you need.</p>
+</section>
+
+<section>
+  <h2>How RotaWake handles it</h2>
+  <div class="grid">
+    <div class="card"><h3>Built in already</h3><p>4 on 4 off is one of the preset patterns. Pick it from the list, no setup.</p></div>
+    <div class="card"><h3>One tap to anchor it</h3><p>Tap which day of the cycle you are on today and the whole rotation lines up, backwards and forwards.</p></div>
+    <div class="card"><h3>Days and nights</h3><p>Running the sixteen-day days-and-nights version? That is a preset too.</p></div>
+    <div class="card"><h3>Swaps don&rsquo;t break it</h3><p>Cover someone else&rsquo;s shift and the underlying rotation carries on untouched.</p></div>
   </div>
+</section>
+
+<section>
+  <h2>Why not a spreadsheet</h2>
+  <p>A rota in a spreadsheet is a list of dates someone typed. It is right until the first swap, the first leave day, or the first month you forget to extend it. RotaWake stores the <i>rule</i> instead of the dates, so it never runs out and never drifts.</p>
+</section>
+
+<div class="band">
+  <h2>Nothing leaves your phone</h2>
+  <p>No account, no cloud, no tracking. Your roster is stored on your device and nowhere else.</p>
+</div>
+
+<section class="center">
+  <a class="cta" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Get it on Google Play</a>
+  <div class="cta-note">Free to download &middot; Android</div>
+</section>
+
+<footer>
+  <span>RotaWake is made by an independent developer, not a company.</span>
+  <span><a href="/privacy/">Privacy</a> &middot; <a href="/support/">Support</a></span>
 </footer>
-<script src="/assets/site.js" defer></script>
+</div>
 </body>
 </html>

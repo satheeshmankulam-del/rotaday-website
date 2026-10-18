@@ -1,17 +1,36 @@
-# Rotaday website
+# RotaWake website
 
-Static site for the Rotaday Android app. No build step: Netlify serves these files as they are.
+Static site for **RotaWake — Shift Work Calendar** (`com.satheesh.roster`).
 
-| Path | Page |
-|---|---|
-| `index.html` | Home |
-| `privacy/index.html` | Privacy policy (use `/privacy/` in Play Console) |
-| `faq/index.html` | FAQ |
-| `support/index.html` | Support and data deletion |
-| `404.html` | "Page not found" page |
-| `assets/site.css` | All styles (colours are at the top) |
-| `assets/analytics.js` | Microsoft Clarity (paste your ID here) |
+Live at https://rotawake.netlify.app
 
-## Before publishing
-1. `assets/analytics.js`: paste your Clarity Project ID, or leave it empty.
-2. If your Netlify site name differs, find and replace `https://rotaday.netlify.app` in every file.
+## Structure
+
+```
+.
+├── index.html                          home
+├── 404.html                            not found (Netlify serves automatically)
+├── robots.txt
+├── sitemap.xml
+├── assets/
+│   └── og-image.png                    1200x630 social preview
+├── faq/index.html
+├── support/index.html
+├── privacy/index.html                  linked from inside the app
+└── 4-on-4-off-shift-calendar-app/      SEO landing page
+    └── index.html
+```
+
+## Deploying
+
+Push to the `main` branch. Netlify builds from the repository root with no
+build command — every file is static.
+
+## Notes
+
+- `privacy/index.html` is the URL registered in Play Console and hard-coded in
+  the app at `PRIVACY_URL` in `App.jsx`. Do not move it.
+- Each page carries its own inline CSS, so there is no stylesheet to keep in
+  sync and nothing to build.
+- Add a new rotation landing page by copying
+  `4-on-4-off-shift-calendar-app/` and adding the URL to `sitemap.xml`.
