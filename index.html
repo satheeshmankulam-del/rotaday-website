@@ -7,6 +7,9 @@
 <meta name="description" content="Set your shift pattern once and see every workday, months ahead. A rota planner for shift workers. Works fully offline, no account." />
 <meta name="theme-color" content="#10151C" />
 <link rel="canonical" href="https://rotawake.netlify.app/" />
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 <meta property="og:title" content="RotaWake — Shift Work Calendar" />
 <meta property="og:description" content="Set your shift pattern once and see every workday, months ahead. A rota planner for shift workers. Works fully offline, no account." />
 <meta property="og:type" content="website" />
@@ -16,24 +19,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "RotaWake", "operatingSystem": "Android", "applicationCategory": "ProductivityApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "url": "https://rotawake.netlify.app/", "downloadUrl": "https://play.google.com/store/apps/details?id=com.satheesh.roster"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "RotaWake", "operatingSystem": "Android", "applicationCategory": "ProductivityApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "url": "https://rotawake.netlify.app/", "downloadUrl": "https://play.google.com/store/apps/details?id=com.satheesh.roster", "author": {"@type": "Person", "name": "Satheesh Mankulam", "url": "https://satheeshmankulam.com"}}</script>
 <style>
 :root{color-scheme:dark;
- /* Taken verbatim from the theme object T in App.jsx */
+ /* theme object T from App.jsx */
  --bg:#10151C;--card:#182029;--card2:#212B36;--line:#28333F;--line-s:#3A4753;
  --ink:#E9EDF2;--dim:#95A1B0;--mute:#697585;--teal:#2E9AAE;--teal-l:#4FBDD0;
- /* PALETTE entries used by the default shift types */
- --amber:#E0A340;--amber-l:#1A1206;--violet:#5B6BD6;--violet-l:#FFFFFF;
- --eve:#2A9C8C;--eve-l:#04211D;--green:#4E9455}
+ /* PALETTE */
+ --amber:#E0A340;--violet:#5B6BD6;--eve:#2A9C8C;--green:#4E9455}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);line-height:1.6;
- font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
- -webkit-font-smoothing:antialiased}
+ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
 a{color:var(--teal-l);text-decoration:none}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:12px;z-index:99;background:var(--teal);color:#042029;
+ padding:10px 18px;border-radius:8px}
 
-/* ---------- header ---------- */
 .hdr{position:sticky;top:0;z-index:50;background:rgba(16,21,28,.86);
  backdrop-filter:blur(14px);border-bottom:1px solid rgba(40,51,63,.7)}
 .hdr-in{display:flex;align-items:center;justify-content:space-between;height:78px}
@@ -45,143 +48,147 @@ a{color:var(--teal-l);text-decoration:none}
 .pill{background:var(--teal);color:#042029;font-weight:650;font-size:15.5px;
  padding:11px 24px;border-radius:999px}
 .pill:hover{background:var(--teal-l)}
-.burger{display:none}
+.menu{display:none}
+.menu summary{list-style:none;cursor:pointer;color:var(--dim);font-size:15px;
+ border:1px solid var(--line-s);border-radius:999px;padding:9px 18px}
+.menu summary::-webkit-details-marker{display:none}
+.menu-p{position:absolute;right:32px;margin-top:12px;background:var(--card);
+ border:1px solid var(--line);border-radius:14px;padding:10px;min-width:190px;
+ display:flex;flex-direction:column;box-shadow:0 18px 44px rgba(0,0,0,.6)}
+.menu-p a{color:var(--dim);padding:11px 14px;border-radius:9px;font-size:15.5px}
 
-/* ---------- hero ---------- */
-.hero{display:grid;grid-template-columns:1fr 408px;gap:44px;align-items:center;
- padding:74px 0 86px}
+.hero{display:grid;grid-template-columns:1fr 408px;gap:44px;align-items:center;padding:74px 0 90px}
 .hero h1{font-size:clamp(38px,4.6vw,54px);font-weight:700;line-height:1.08;
- letter-spacing:-.033em;margin-bottom:26px}
-.hero .lede{color:var(--dim);font-size:19px;line-height:1.62;max-width:500px;margin-bottom:38px}
-.get{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+ letter-spacing:-.033em;margin-bottom:24px}
+.hero .lede{color:var(--dim);font-size:19px;line-height:1.62;max-width:500px;margin-bottom:34px}
 .badge{display:inline-flex;align-items:center;gap:13px;background:#000;border:1px solid #2E3845;
  border-radius:10px;padding:11px 22px 11px 18px}
 .badge .bt{display:block;color:#fff;font-size:10.5px;letter-spacing:.09em;line-height:1.3}
-.badge .bb{display:block;color:#fff;font-size:19px;font-weight:600;line-height:1.15;
- letter-spacing:-.01em}
-.ticks{display:flex;gap:20px;flex-wrap:wrap}
-.ticks span{display:flex;align-items:center;gap:7px;color:var(--dim);font-size:15px}
-.ticks svg{flex:none}
+.badge .bb{display:block;color:#fff;font-size:19px;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.chips span{border:1px solid var(--line-s);color:var(--dim);border-radius:999px;
+ padding:7px 16px;font-size:14.5px}
 
-/* ---------- phone: every length is the real value from S in App.jsx ---------- */
-.phone{width:408px;background:var(--bg);border:9px solid #202A36;border-radius:40px;
- overflow:hidden;box-shadow:0 34px 80px rgba(0,0,0,.6);display:flex;flex-direction:column}
-.sc{display:flex;flex-direction:column;color:var(--ink);font-size:14px}
-.psb{display:flex;justify-content:space-between;color:var(--mute);font-size:11px;
- padding:8px 16px 0}
-.appBarRow{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
- padding:10px 14px 8px}
-.brandLeft{display:flex;align-items:center;gap:9px}
-.brandName{font-size:16px;font-weight:500;letter-spacing:-.2px}
-.iconBtn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--dim)}
-.ctxRow{min-height:50px;display:flex;align-items:center;justify-content:center;padding:4px 10px 10px}
-.monthNav{display:flex;align-items:center;gap:2px}
-.navBtn{color:var(--dim);font-size:26px;width:44px;height:44px;display:flex;
- align-items:center;justify-content:center;line-height:1}
-.monthPill{display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:0 12px;
- border-radius:999px;border:1px solid var(--line-s);color:var(--ink);font-size:14px;font-weight:500}
-.nextCard{background:var(--card2);border-radius:10px;margin:0 18px 16px;padding:14px 16px}
-.nextLabel{font-size:11px;color:var(--mute);margin-bottom:8px}
-.nextRow{display:flex;align-items:center;gap:10px}
-.nextTitle{font-size:15px;font-weight:500}
-.nextSub{font-size:13px;color:var(--dim);margin-top:8px}
-.chipLg{width:34px;height:34px;border-radius:5px;display:flex;align-items:center;
- justify-content:center;font-size:15px;font-weight:500;flex-shrink:0}
-.weekRow{display:grid;grid-template-columns:repeat(7,1fr);padding:0 12px}
-.weekLabel{text-align:center;font-size:11px;color:var(--mute);padding-bottom:8px}
-.rule{height:1px;background:var(--line);margin:0 12px}
-.pgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px 12px}
-.cell{height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;
- position:relative;border-radius:8px}
-.cell.today{border:2px solid var(--teal)}
-.dayNum{font-size:14px;font-variant-numeric:tabular-nums}
-.chip{width:24px;height:18px;border-radius:4px;margin-top:3px;display:flex;align-items:center;
- justify-content:center;font-size:10px;font-weight:500}
-.chipEmpty{width:24px;height:18px;margin-top:3px}
-.summary{text-align:center;font-size:12px;color:var(--mute);padding:14px 0}
-.tabBar{flex-shrink:0;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);
- border-top:1px solid var(--line);padding:8px 0}
-.tabItem{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;
- justify-content:center;color:var(--mute)}
-.tabItem.on{color:var(--teal)}
-.tabPill{width:56px;height:30px;border-radius:999px;display:flex;align-items:center;
- justify-content:center}
-.tabItem.on .tabPill{background:rgba(46,154,174,0.18)}
-.tabLabel{font-size:12px}
-
-/* ---- popout: a fragment lifted out of the phone, as on the store shots ---- */
-.stage{position:relative;flex:none;width:408px}
-.popout{position:absolute;top:126px;left:-16px;right:-16px;background:var(--card);
- border:2px solid var(--teal);border-radius:18px;padding:18px 20px;
- box-shadow:0 22px 55px rgba(0,0,0,.70)}
-.po-next .nextLabel{font-size:13px}
-.po-next .nextTitle{font-size:19px}
-.po-next .nextSub{font-size:15px}
-.po-next .chipLg{width:42px;height:42px;font-size:19px;border-radius:7px}
-
-/* ---------- sections ---------- */
 section{padding-bottom:96px}
 h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;letter-spacing:-.025em;margin-bottom:14px}
-.sub{color:var(--dim);font-size:17.5px;max-width:580px;margin-bottom:38px}
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
-.card h3{font-size:17.5px;font-weight:650;margin-bottom:9px;display:flex;align-items:center;gap:10px}
-.card p{color:var(--dim);font-size:15.5px}
-.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.sub{color:var(--dim);font-size:17.5px;max-width:620px;margin-bottom:40px}
+.feat{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.fblock h3{font-size:20px;font-weight:650;margin-bottom:10px;display:flex;align-items:center;gap:11px}
+.fblock p{color:var(--dim);font-size:16px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:218px;gap:18px;
+ overflow-x:auto;padding-bottom:12px;scrollbar-width:thin}
+.strip figure{margin:0}
+.strip img{width:100%;border-radius:16px;border:1px solid var(--line);display:block}
+.strip figcaption{color:var(--mute);font-size:14px;margin-top:10px;text-align:center}
 .band{background:linear-gradient(145deg,#15202B,#121A23);border:1px solid var(--line);
- border-radius:22px;padding:62px 40px;text-align:center;margin-bottom:96px}
-.band h2{margin-bottom:16px}
-.band p{color:var(--dim);font-size:17.5px;max-width:520px;margin:0 auto}
-.plist{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
-.pitem{display:flex;gap:13px;align-items:flex-start;background:var(--card);
- border:1px solid var(--line);border-radius:13px;padding:19px 21px}
-.pitem svg{flex:none;margin-top:3px}
-.pitem span{color:var(--dim);font-size:15.5px}
-.price-note{color:var(--mute);font-size:15.5px;margin-top:22px}
-.amber{color:var(--amber)}
-
-/* ---------- article pages ---------- */
-.page{padding:64px 0 20px;max-width:760px}
-.page h1{font-size:clamp(32px,4.4vw,46px);font-weight:700;letter-spacing:-.028em;
- line-height:1.14;margin-bottom:18px}
-.page .lede{color:var(--dim);font-size:18.5px;max-width:620px}
-.page h2{font-size:21px;font-weight:650;margin:38px 0 10px;letter-spacing:-.01em}
-.page p,.page li{color:var(--dim);font-size:16.5px}
-.page ul{padding-left:21px;margin-top:10px}.page li{margin-bottom:9px}
-.updated{color:var(--mute);font-size:14.5px;margin-bottom:34px}
-.callout{background:var(--card);border:1px solid var(--line);border-radius:14px;
- padding:22px 24px;margin:28px 0}
-.callout p{color:var(--ink);margin:0}
+ border-radius:22px;padding:56px 40px;margin-bottom:96px}
+.band h2{text-align:center}
+.band .sub{margin:0 auto 34px;text-align:center}
+.pts{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.pt{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.pt b{display:block;font-size:16px;font-weight:650;margin-bottom:6px}
+.pt span{color:var(--dim);font-size:15px}
+.steps{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.step b{display:flex;align-items:center;justify-content:center;width:32px;height:32px;
+ border-radius:999px;background:rgba(46,154,174,.18);color:var(--teal);font-size:15px;
+ margin-bottom:14px}
+.step p{color:var(--dim);font-size:15.5px}
 .qa{border-bottom:1px solid var(--line);padding:24px 0}
 .qa:last-child{border-bottom:none}
 .qa h3{color:var(--ink);font-size:18px;font-weight:650;margin-bottom:9px}
 .qa p{color:var(--dim);font-size:16.5px}
-.cta-row{text-align:center;padding:14px 0 40px}
+.dev{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;
+ background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px}
+.dev-mark{width:72px;height:72px;border-radius:20px;background:var(--card2);
+ display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:700;
+ color:var(--teal);flex:none}
+.dev h2{font-size:27px;margin-bottom:12px}
+.dev p{color:var(--dim);font-size:16.5px;margin-bottom:12px}
+.dev-links{display:flex;gap:22px;flex-wrap:wrap;margin-top:6px}
+.apps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(204px,1fr))}
+.app{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
+ border-radius:14px;padding:18px 20px}
+.app .ic{width:40px;height:40px;border-radius:11px;background:var(--card2);flex:none;
+ display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--teal);font-size:16px}
+.app b{display:block;font-size:16px;font-weight:650}
+.app span{color:var(--mute);font-size:14.5px}
+.app.self{border-color:var(--teal)}
+.close-cta{text-align:center;padding:62px 40px;background:linear-gradient(145deg,#15202B,#121A23);
+ border:1px solid var(--line);border-radius:22px;margin-bottom:96px}
+.close-cta h2{margin-bottom:12px}
+.close-cta p{color:var(--dim);font-size:17.5px;margin-bottom:30px}
 
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--line);padding:38px 0 70px;margin-top:20px}
-.ft{display:flex;flex-wrap:wrap;gap:16px 34px;justify-content:space-between;align-items:center}
-.ft a{color:var(--mute);font-size:14.5px}
-.ft a:hover{color:var(--dim)}
-.ft-l{color:var(--mute);font-size:14.5px}
-.ft-n{display:flex;gap:26px;flex-wrap:wrap}
+.page{padding:64px 0 20px;max-width:780px}
+.page h1{font-size:clamp(32px,4.4vw,46px);font-weight:700;letter-spacing:-.028em;
+ line-height:1.14;margin-bottom:18px}
+.page .lede{color:var(--dim);font-size:18.5px;max-width:640px}
+.page h2{font-size:23px;font-weight:650;margin:46px 0 14px;letter-spacing:-.012em;
+ scroll-margin-top:96px}
+.page h3{font-size:18px;font-weight:650;margin:26px 0 8px}
+.page p,.page li{color:var(--dim);font-size:16.5px}
+.page ul{padding-left:21px;margin-top:10px}.page li{margin-bottom:9px}
+.jump{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 8px;padding:0;list-style:none}
+.jump li{margin:0}
+.jump a{border:1px solid var(--line-s);border-radius:999px;padding:8px 16px;
+ font-size:14.5px;color:var(--dim)}
+.jump a:hover{color:var(--ink);border-color:var(--teal)}
+.updated{color:var(--mute);font-size:14.5px;margin-bottom:34px}
+.callout{background:var(--card);border:1px solid var(--line);border-radius:14px;
+ padding:22px 24px;margin:28px 0}
+.callout p{color:var(--ink);margin:0}
+
+footer{border-top:1px solid var(--line);padding:52px 0 70px;margin-top:20px}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;margin-bottom:42px}
+.ft-tag{color:var(--mute);font-size:14.5px;margin-top:14px;max-width:270px}
+.ft-col b{display:block;font-size:14px;font-weight:650;color:var(--ink);margin-bottom:14px}
+.ft-col a{display:block;color:var(--mute);font-size:14.5px;padding:5px 0}
+.ft-col a:hover{color:var(--dim)}
+.ft-bot{border-top:1px solid var(--line);padding-top:26px;color:var(--mute);font-size:14px;
+ display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
 
 @media (max-width:900px){
-  .wrap{padding:0 22px}
-  .hero{grid-template-columns:1fr;gap:52px;padding:62px 0 76px;text-align:center}
-  .hero .lede{margin-left:auto;margin-right:auto}
-  .get{justify-content:center}
-  .ticks{justify-content:center}
-  .stage{width:min(408px,100%);margin:0 auto}
-  .phone{width:100%}
-  .popout{left:-8px;right:-8px}
-  .nav{display:none}
-  .band{padding:48px 26px}
-  section{padding-bottom:72px}
+ .wrap{padding:0 22px}
+ .hero{grid-template-columns:1fr;gap:48px;padding:56px 0 72px;text-align:center}
+ .hero .lede{margin-left:auto;margin-right:auto}
+ .chips{justify-content:center}
+ .stage{width:min(408px,100%);margin:0 auto}
+ .phone{width:100%}.popout{left:-8px;right:-8px}
+ .nav{display:none}.menu{display:block}
+ .band,.close-cta{padding:44px 24px}
+ .dev{grid-template-columns:1fr;padding:28px}
+ .ft-top{grid-template-columns:1fr 1fr;gap:28px}
+ section{padding-bottom:72px}
+}
+
+.stage{position:relative;flex:none;width:408px}
+.phone{width:408px;border:9px solid #202A36;border-radius:40px;overflow:hidden;
+ box-shadow:0 34px 80px rgba(0,0,0,.6);background:var(--bg)}
+.phone img{display:block;width:100%}
+.popout{position:absolute;top:126px;left:-16px;right:-16px;background:var(--card);
+ border:2px solid var(--teal);border-radius:18px;padding:18px 20px;
+ box-shadow:0 22px 55px rgba(0,0,0,.70)}
+.po-l{font-size:13px;color:var(--mute);margin-bottom:8px}
+.po-r{display:flex;align-items:center;gap:12px}
+.po-c{width:42px;height:42px;border-radius:7px;display:flex;align-items:center;
+ justify-content:center;font-size:19px;font-weight:500;flex:none}
+.po-t{font-size:19px;font-weight:500}
+.po-s{font-size:15px;color:var(--dim);margin-top:8px}
+
+/* Grid items default to min-width:auto, which lets the 408px phone hold the
+   column open below 408px. An explicit floor lets it shrink. */
+.hero>*{min-width:0}
+/* Repeated after the phone rules above, because these must win on mobile. */
+@media (max-width:900px){
+ .stage{width:100%;max-width:408px;margin:0 auto;min-width:0}
+ .phone{width:100%;max-width:100%}
+ .popout{left:0;right:0}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="hdr"><div class="wrap"><div class="hdr-in">
   <a class="brand" href="/"><svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true">
 <rect width="64" height="64" rx="16" fill="#212B36"/>
@@ -191,14 +198,16 @@ footer{border-top:1px solid var(--line);padding:38px 0 70px;margin-top:20px}
 <circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
 <circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></a>
   <nav class="nav"><a href="/#features">Features</a><a href="/faq/">FAQ</a><a href="/support/">Support</a><a class="pill" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Get the app</a></nav>
+  <details class="menu"><summary>Menu</summary><div class="menu-p"><a href="/#features">Features</a><a href="/faq/">FAQ</a><a href="/support/">Support</a>
+    <a href="/privacy/">Privacy</a><a href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Get the app</a></div></details>
 </div></div></div>
-<div class="wrap">
+<main id="main"><div class="wrap">
 
 <section class="hero">
   <div>
     <h1>Your shift pattern,<br />already on the calendar</h1>
     <p class="lede">RotaWake turns a rotating shift pattern into a calendar you can actually plan around. Set the pattern once and every future shift is filled in, with a reminder before each one.</p>
-    <div class="get"><a class="badge" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">
+    <a class="badge" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">
   <svg width="25" height="27" viewBox="0 0 24 26" aria-hidden="true">
     <path d="M1.6 1.2a1.8 1.8 0 0 0-.6 1.4v20.8c0 .6.2 1.1.6 1.4L13.3 13 1.6 1.2z" fill="#4DBFEB"/>
     <path d="M17.4 9.1 13.3 13l4.1 3.9 4.9-2.8c1-.6 1-2.1 0-2.7l-4.9-2.3z" fill="#FBC02D"/>
@@ -206,100 +215,120 @@ footer{border-top:1px solid var(--line);padding:38px 0 70px;margin-top:20px}
     <path d="M1.6 1.2 13.3 13l4.1-3.9L3.7 1.2c-.8-.5-1.6-.5-2.1 0z" fill="#34A853"/>
   </svg>
   <span><span class="bt">GET IT ON</span><span class="bb">Google Play</span></span></a>
-      <div class="ticks">
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FB37A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Free to use</span><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FB37A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Works offline</span><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5FB37A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No account</span>
-      </div>
-    </div>
+    <div class="chips"><span>Free to use</span><span>No account</span><span>Works offline</span></div>
   </div>
   <div class="stage">
-    <div class="phone"><div class="sc">
-  <div class="psb"><span>7:25</span><span>&#9679;&#9679;&#9679;</span></div>
-  <div class="appBarRow">
-    <div class="brandLeft"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+  <div class="phone"><img src="/assets/screen-calendar.png" alt="RotaWake calendar showing a 4 on 4 off rotation for October" width="390" height="780" /></div>
+  <div class="popout">
+    <div class="po-l">Next</div>
+    <div class="po-r"><div class="po-c" style="background:#5B6BD6;color:#fff">N</div>
+      <div class="po-t">Night &middot; 19:00 &ndash; 07:00</div></div>
+    <div class="po-s">Starts in 2d 14h</div>
+  </div>
+</div>
+</section>
+
+<section id="features">
+  <h2>What RotaWake does</h2>
+  <p class="sub">Six things, done properly, with nothing you have to maintain by hand.</p>
+  <div class="feat">
+    <div class="fblock"><h3><i class="dot" style="background:#E0A340"></i>Any rotation, any cycle length</h3><p>4 on 4 off, Panama, continental, days and nights, weekdays &mdash; or build your own cycle in under a minute. RotaWake stores the rule, not a list of dates, so it never runs out.</p></div><div class="fblock"><h3><i class="dot" style="background:#2E9AAE"></i>Your whole month at a glance</h3><p>Colour-coded shifts with today outlined and your next shift pinned above the grid. Scroll forwards or backwards as far as you like.</p></div><div class="fblock"><h3><i class="dot" style="background:#5B6BD6"></i>A reminder before every shift</h3><p>Set how far ahead you want the warning and it arrives on time, with no connection and no account. Android schedules it in advance.</p></div><div class="fblock"><h3><i class="dot" style="background:#4E9455"></i>Change one day without breaking the pattern</h3><p>Cover a shift, book leave or mark a training day. The rotation carries on underneath, so the days after it are untouched.</p></div><div class="fblock"><h3><i class="dot" style="background:#2A9C8C"></i>Hours, overtime and earnings</h3><p>Monthly totals by shift type, a breakdown per shift, and export to a spreadsheet or your calendar. Part of RotaWake Pro.</p></div><div class="fblock"><h3><i class="dot" style="background:#95A1B0"></i>No account, no cloud, no tracking</h3><p>Everything is worked out on your phone. There is nothing to sign up for and nothing to leak.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Inside the app</h2>
+  <p class="sub">Every screen, exactly as it looks on your phone.</p>
+  <div class="strip">
+    <figure><img src="/assets/screen-calendar.png" alt="RotaWake calendar screen" width="390" height="780" loading="lazy" /><figcaption>Calendar</figcaption></figure><figure><img src="/assets/screen-patterns.png" alt="RotaWake shift patterns screen" width="390" height="780" loading="lazy" /><figcaption>Shift patterns</figcaption></figure><figure><img src="/assets/screen-reminder.png" alt="RotaWake shift reminder screen" width="390" height="780" loading="lazy" /><figcaption>Shift reminder</figcaption></figure><figure><img src="/assets/screen-editday.png" alt="RotaWake changing one day screen" width="390" height="780" loading="lazy" /><figcaption>Changing one day</figcaption></figure><figure><img src="/assets/screen-reports.png" alt="RotaWake monthly reports screen" width="390" height="780" loading="lazy" /><figcaption>Monthly reports</figcaption></figure><figure><img src="/assets/screen-pro.png" alt="RotaWake rotawake pro screen" width="390" height="780" loading="lazy" /><figcaption>RotaWake Pro</figcaption></figure>
+  </div>
+</section>
+
+<div class="band">
+  <h2>Your roster is nobody else&rsquo;s business</h2>
+  <p class="sub">There is no account and no cloud sync, so your shifts stay on your phone.</p>
+  <div class="pts">
+    <div class="pt"><b>No account</b><span>Nothing to sign up for, ever.</span></div>
+    <div class="pt"><b>Nothing synced</b><span>No server holds your roster.</span></div>
+    <div class="pt"><b>Backups on your terms</b><span>Export a file only when you ask.</span></div>
+    <div class="pt"><b>No tracking</b><span>No analytics, no advertising.</span></div>
+  </div>
+  <p style="text-align:center;margin-top:30px"><a href="/privacy/">Read the privacy policy</a></p>
+</div>
+
+<section>
+  <h2>How to start</h2>
+  <p class="sub">Four taps and your year is filled in.</p>
+  <div class="steps">
+    <div class="step"><b>1</b><p>Pick the pattern that matches your rota, or build your own cycle.</p></div>
+    <div class="step"><b>2</b><p>Tap which day of the cycle you are on today. That anchors everything.</p></div>
+    <div class="step"><b>3</b><p>Choose how far ahead you want a reminder before each shift.</p></div>
+    <div class="step"><b>4</b><p>Change any single day as life happens. The pattern carries on underneath.</p></div>
+  </div>
+  <p style="margin-top:26px"><a href="/4-on-4-off-shift-calendar-app/">Guide: a 4 on 4 off shift calendar &rarr;</a></p>
+</section>
+
+<section>
+  <h2>Common questions</h2>
+  <div style="margin-top:8px">
+    <div class="qa"><h3>How do I set up my rotation?</h3><p>Pick the pattern that matches your rota, then tap which day of the cycle you are on today. RotaWake works out every other day from there, forwards and backwards, for as far as you scroll.</p></div><div class="qa"><h3>Does it work offline?</h3><p>Yes. RotaWake has no account and no server. Everything is worked out on your phone, so it behaves exactly the same with no signal at all.</p></div><div class="qa"><h3>My reminders arrive late. What do I change?</h3><p>Android battery optimisation is almost always the cause. Open your phone&rsquo;s Settings, find RotaWake under Apps, and set its battery usage to Unrestricted.</p></div><div class="qa"><h3>Is Pro a subscription?</h3><p>No. It is a single payment and it is yours permanently. There are no renewals and no trial that turns into a bill.</p></div>
+  </div>
+  <p style="margin-top:26px"><a href="/faq/">See all questions &rarr;</a></p>
+</section>
+
+<section>
+  <div class="dev">
+    <div class="dev-mark">SM</div>
+    <div>
+      <h2>Made by Satheesh Mankulam</h2>
+      <p>Satheesh is a UX and motion designer with over 11 years in visual design, who builds his own Android apps in his own time &mdash; free, with no account required, and with your data kept on the device.</p>
+      <p>He wrote <i>The Psychology of Product Moments</i> and writes about design and app building on Medium.</p>
+      <div class="dev-links"><a href="https://satheeshmankulam.com">Portfolio</a><a href="https://github.com/satheeshmankulam-del">GitHub</a>
+        <a href="mailto:satheeshmankulam@gmail.com">Email</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>All apps by Satheesh</h2>
+  <p class="sub">Small, private, offline-first tools for Android.</p>
+  <div class="apps">
+    <div class="app self"><div class="ic">RW</div><div><b>RotaWake</b><span>Shift work calendar</span></div></div>
+    <a class="app" href="https://play.google.com/store/apps/details?id=com.familydose.app"><div class="ic">FD</div><div><b>FamilyDose</b><span>Family medication tracker</span></div></a><a class="app" href="https://play.google.com/store/apps/details?id=com.satheesh.spendcast"><div class="ic">SC</div><div><b>SpendCast</b><span>Offline budget tracker</span></div></a><a class="app" href="https://play.google.com/store/apps/details?id=com.satheesh.linkvault"><div class="ic">L</div><div><b>Linked</b><span>Private bookmark manager</span></div></a><a class="app" href="https://play.google.com/store/apps/details?id=com.satheesh.noctuna"><div class="ic">N</div><div><b>Noctuna</b><span>Bedtime stories for children</span></div></a>
+  </div>
+</section>
+
+<div class="close-cta">
+  <h2>Get RotaWake for Android</h2>
+  <p>Free to download, with no account to create.</p>
+  <div style="display:flex;justify-content:center"><a class="badge" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">
+  <svg width="25" height="27" viewBox="0 0 24 26" aria-hidden="true">
+    <path d="M1.6 1.2a1.8 1.8 0 0 0-.6 1.4v20.8c0 .6.2 1.1.6 1.4L13.3 13 1.6 1.2z" fill="#4DBFEB"/>
+    <path d="M17.4 9.1 13.3 13l4.1 3.9 4.9-2.8c1-.6 1-2.1 0-2.7l-4.9-2.3z" fill="#FBC02D"/>
+    <path d="M1.6 24.8c.5.5 1.3.5 2.1 0l13.7-7.9L13.3 13 1.6 24.8z" fill="#E94235"/>
+    <path d="M1.6 1.2 13.3 13l4.1-3.9L3.7 1.2c-.8-.5-1.6-.5-2.1 0z" fill="#34A853"/>
+  </svg>
+  <span><span class="bt">GET IT ON</span><span class="bb">Google Play</span></span></a></div>
+</div>
+
+</div></main>
+<footer><div class="wrap">
+<div class="ft-top">
+  <div><div class="brand"><svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true">
 <rect width="64" height="64" rx="16" fill="#212B36"/>
 <circle cx="32" cy="15" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="19.98" r="4.5" fill="#E0A340"/>
 <circle cx="49" cy="32" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="44.02" r="4.5" fill="#E0A340"/>
 <circle cx="32" cy="49" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="44.02" r="4.5" fill="#3A4753"/>
 <circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
-<circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span class="brandName">RotaWake</span></div>
-    <div class="iconBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
- stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div>
-  </div>
-  <div class="ctxRow"><div class="monthNav">
-    <span class="navBtn">&#8249;</span><span class="monthPill">Oct 2026 &#9662;</span><span class="navBtn">&#8250;</span>
-  </div></div>
-  <div class="nextCard">
-    <div class="nextLabel">Next</div>
-    <div class="nextRow"><div class="chipLg" style="background:#5B6BD6;color:#FFFFFF">N</div>
-      <div class="nextTitle">Night &middot; 19:00 &ndash; 07:00</div></div>
-    <div class="nextSub">Starts in 2d 14h</div>
-  </div>
-  <div class="weekRow"><div class="weekLabel">S</div><div class="weekLabel">M</div><div class="weekLabel">T</div><div class="weekLabel">W</div><div class="weekLabel">T</div><div class="weekLabel">F</div><div class="weekLabel">S</div></div>
-  <div class="rule"></div>
-  <div class="pgrid"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="dayNum">1</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">2</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">3</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">4</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">5</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">6</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">7</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">8</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">9</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">10</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">11</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">12</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">13</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">14</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">15</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">16</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">17</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">18</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">19</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">20</div><div class="chip" style="background:#E0A340;color:#1A1206">D</div></div><div class="cell"><div class="dayNum">21</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">22</div><div class="chipEmpty"></div></div><div class="cell today"><div class="dayNum">23</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">24</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">25</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">26</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">27</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">28</div><div class="chip" style="background:#5B6BD6;color:#FFFFFF">N</div></div><div class="cell"><div class="dayNum">29</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">30</div><div class="chipEmpty"></div></div><div class="cell"><div class="dayNum">31</div><div class="chipEmpty"></div></div></div>
-  <div class="rule"></div>
-  <div class="summary">Worked 168h &middot; 14 shifts</div>
-  <div class="tabBar"><div class="tabItem on"><div class="tabPill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></g></svg></div><div class="tabLabel">Calendar</div></div><div class="tabItem"><div class="tabPill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg></div><div class="tabLabel">Shifts</div></div><div class="tabItem"><div class="tabPill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></g></svg></div><div class="tabLabel">Reports</div></div><div class="tabItem"><div class="tabPill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g><path d="M20 7h-9M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></g></svg></div><div class="tabLabel">Settings</div></div></div>
-</div></div>
-    <div class="popout po-next">
-      <div class="nextLabel">Next</div>
-      <div class="nextRow"><div class="chipLg" style="background:#5B6BD6;color:#FFFFFF">N</div>
-        <div class="nextTitle">Night &middot; 19:00 &ndash; 07:00</div></div>
-      <div class="nextSub">Starts in 2d 14h</div>
-    </div>
-  </div>
-</section>
-
-<section id="features">
-  <h2>What RotaWake does</h2>
-  <p class="sub">Four things, done properly, with nothing you have to maintain by hand.</p>
-  <div class="grid">
-    <div class="card"><h3><i class="dot" style="background:#E0A340"></i>Any rotation</h3>
-      <p>4 on 4 off, Panama, continental, days and nights, weekdays &mdash; or build your own cycle in under a minute.</p></div>
-    <div class="card"><h3><i class="dot" style="background:#2A9C8C"></i>Months ahead</h3>
-      <p>Scroll forwards or backwards as far as you like. Every shift is worked out from the pattern, not stored one by one.</p></div>
-    <div class="card"><h3><i class="dot" style="background:#5B6BD6"></i>Shift reminders</h3>
-      <p>A notification before every shift starts, and you choose how far ahead the warning arrives.</p></div>
-    <div class="card"><h3><i class="dot" style="background:#4E9455"></i>Change one day</h3>
-      <p>Cover a shift, book leave or mark a training day. The rotation carries on underneath, untouched.</p></div>
-  </div>
-</section>
-
-<div class="band">
-  <h2>Nothing leaves your phone</h2>
-  <p>No account. No sign-up. No cloud, no analytics, no advertising. Your roster is stored on your device and nowhere else.</p>
+<circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></div>
+    <p class="ft-tag">A shift work calendar made for people whose week doesn&rsquo;t look like a week.</p></div>
+  <div class="ft-col"><b>App</b><a href="/#features">Features</a>
+    <a href="/4-on-4-off-shift-calendar-app/">Guide</a><a href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Google Play</a></div>
+  <div class="ft-col"><b>Help</b><a href="/faq/">FAQ</a><a href="/support/">Support</a>
+    <a href="/privacy/">Privacy policy</a></div>
+  <div class="ft-col"><b>More apps</b><a href="https://play.google.com/store/apps/details?id=com.familydose.app">FamilyDose</a><a href="https://play.google.com/store/apps/details?id=com.satheesh.spendcast">SpendCast</a><a href="https://satheeshmankulam.com">satheeshmankulam.com</a></div>
 </div>
-
-<section>
-  <h2>RotaWake Pro</h2>
-  <p class="sub"><span class="amber">One payment.</span> No subscription, no renewals, no trial that turns into a bill.</p>
-  <div class="plist">
-    <div class="pitem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E9AAE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Hours, overtime and earnings totals by month</span></div>
-    <div class="pitem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E9AAE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Breakdown by shift type</span></div>
-    <div class="pitem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E9AAE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Backup and restore your whole roster</span></div>
-    <div class="pitem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E9AAE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Export any month as a spreadsheet</span></div>
-  </div>
-  <p class="price-note">Buy it once and it&rsquo;s yours, on every phone you sign in to.</p>
-</section>
-
-<section>
-  <h2>Popular rotations</h2>
-  <p class="sub">Guides for the patterns people ask about most.</p>
-  <div class="grid">
-    <div class="card"><h3><i class="dot" style="background:#E0A340"></i>4 on 4 off</h3>
-      <p>Eight-day cycle that drifts across the week. <a href="/4-on-4-off-shift-calendar-app/">See how RotaWake handles it &rarr;</a></p></div>
-  </div>
-</section>
-
-<section>
-  <h2>More from the developer</h2>
-  <p class="sub">Other small, private, offline-first Android apps &mdash;
-    <a href="https://play.google.com/store/search?q=Satheesh%20Mankulam&amp;c=apps">see them all on Google Play</a>.</p>
-</section>
-
-<footer><div class="ft">
-  <span class="ft-l">RotaWake is made by an independent developer, not a company.</span>
-  <span class="ft-n"><a href="/faq/">FAQ</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></span>
+<div class="ft-bot"><span>&copy; 2026 Satheesh Mankulam</span>
+<span>RotaWake is a personal tool, not employment or payroll advice.</span></div>
 </div></footer>
-</div>
 </body></html>

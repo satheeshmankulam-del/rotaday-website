@@ -1,20 +1,21 @@
 # RotaWake website
 
 Static site for **RotaWake — Shift Work Calendar** (`com.satheesh.roster`).
-
-Live at https://rotawake.netlify.app
+Live at https://rotawake.netlify.app. Structured to match linkedbookmark.netlify.app.
 
 ## Structure
 
 ```
 .
 ├── index.html                          home
-├── 404.html                            Netlify serves this automatically
+├── 404.html
 ├── robots.txt
 ├── sitemap.xml
 ├── assets/
-│   └── og-image.png                    1200x630 social preview
-├── faq/index.html                      12 questions, FAQPage schema
+│   ├── favicon.svg  favicon-32.png  apple-touch-icon.png  icon-512.png
+│   ├── og-image.png                    1200x630 social preview
+│   └── screen-*.png                    six app screenshots, 780x1560
+├── faq/index.html                      15 questions in 4 groups, FAQPage schema
 ├── support/index.html
 ├── privacy/index.html                  linked from inside the app
 └── 4-on-4-off-shift-calendar-app/      SEO landing page
@@ -30,9 +31,9 @@ command — every file is static.
 
 - `privacy/index.html` is the URL registered in Play Console and hard-coded
   in the app at `PRIVACY_URL` in `App.jsx`. Do not move it.
-- Each page carries its own inline CSS, so there is nothing to build and no
-  stylesheet to keep in sync.
-- The phone mockup on the home page is live HTML, not an image, so it stays
-  sharp on any display.
-- Add a new rotation landing page by copying
-  `4-on-4-off-shift-calendar-app/` and adding its URL to `sitemap.xml`.
+- Colours come from the theme object `T` and `PALETTE` in `App.jsx`. If the
+  app's palette changes, update `:root` to match.
+- Screenshots in `assets/` are rendered from the same mockups as the Play
+  Store images, so the two never drift apart.
+- Add a rotation landing page by copying `4-on-4-off-shift-calendar-app/`
+  and adding its URL to `sitemap.xml`.

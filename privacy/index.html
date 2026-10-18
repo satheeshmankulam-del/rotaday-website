@@ -7,6 +7,9 @@
 <meta name="description" content="RotaWake stores everything on your phone. No account, no tracking, no data sent anywhere." />
 <meta name="theme-color" content="#10151C" />
 <link rel="canonical" href="https://rotawake.netlify.app/privacy/" />
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 <meta property="og:title" content="Privacy Policy — RotaWake" />
 <meta property="og:description" content="RotaWake stores everything on your phone. No account, no tracking, no data sent anywhere." />
 <meta property="og:type" content="website" />
@@ -19,21 +22,21 @@
 
 <style>
 :root{color-scheme:dark;
- /* Taken verbatim from the theme object T in App.jsx */
+ /* theme object T from App.jsx */
  --bg:#10151C;--card:#182029;--card2:#212B36;--line:#28333F;--line-s:#3A4753;
  --ink:#E9EDF2;--dim:#95A1B0;--mute:#697585;--teal:#2E9AAE;--teal-l:#4FBDD0;
- /* PALETTE entries used by the default shift types */
- --amber:#E0A340;--amber-l:#1A1206;--violet:#5B6BD6;--violet-l:#FFFFFF;
- --eve:#2A9C8C;--eve-l:#04211D;--green:#4E9455}
+ /* PALETTE */
+ --amber:#E0A340;--violet:#5B6BD6;--eve:#2A9C8C;--green:#4E9455}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);line-height:1.6;
- font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
- -webkit-font-smoothing:antialiased}
+ font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
 a{color:var(--teal-l);text-decoration:none}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:12px;z-index:99;background:var(--teal);color:#042029;
+ padding:10px 18px;border-radius:8px}
 
-/* ---------- header ---------- */
 .hdr{position:sticky;top:0;z-index:50;background:rgba(16,21,28,.86);
  backdrop-filter:blur(14px);border-bottom:1px solid rgba(40,51,63,.7)}
 .hdr-in{display:flex;align-items:center;justify-content:space-between;height:78px}
@@ -45,143 +48,147 @@ a{color:var(--teal-l);text-decoration:none}
 .pill{background:var(--teal);color:#042029;font-weight:650;font-size:15.5px;
  padding:11px 24px;border-radius:999px}
 .pill:hover{background:var(--teal-l)}
-.burger{display:none}
+.menu{display:none}
+.menu summary{list-style:none;cursor:pointer;color:var(--dim);font-size:15px;
+ border:1px solid var(--line-s);border-radius:999px;padding:9px 18px}
+.menu summary::-webkit-details-marker{display:none}
+.menu-p{position:absolute;right:32px;margin-top:12px;background:var(--card);
+ border:1px solid var(--line);border-radius:14px;padding:10px;min-width:190px;
+ display:flex;flex-direction:column;box-shadow:0 18px 44px rgba(0,0,0,.6)}
+.menu-p a{color:var(--dim);padding:11px 14px;border-radius:9px;font-size:15.5px}
 
-/* ---------- hero ---------- */
-.hero{display:grid;grid-template-columns:1fr 408px;gap:44px;align-items:center;
- padding:74px 0 86px}
+.hero{display:grid;grid-template-columns:1fr 408px;gap:44px;align-items:center;padding:74px 0 90px}
 .hero h1{font-size:clamp(38px,4.6vw,54px);font-weight:700;line-height:1.08;
- letter-spacing:-.033em;margin-bottom:26px}
-.hero .lede{color:var(--dim);font-size:19px;line-height:1.62;max-width:500px;margin-bottom:38px}
-.get{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+ letter-spacing:-.033em;margin-bottom:24px}
+.hero .lede{color:var(--dim);font-size:19px;line-height:1.62;max-width:500px;margin-bottom:34px}
 .badge{display:inline-flex;align-items:center;gap:13px;background:#000;border:1px solid #2E3845;
  border-radius:10px;padding:11px 22px 11px 18px}
 .badge .bt{display:block;color:#fff;font-size:10.5px;letter-spacing:.09em;line-height:1.3}
-.badge .bb{display:block;color:#fff;font-size:19px;font-weight:600;line-height:1.15;
- letter-spacing:-.01em}
-.ticks{display:flex;gap:20px;flex-wrap:wrap}
-.ticks span{display:flex;align-items:center;gap:7px;color:var(--dim);font-size:15px}
-.ticks svg{flex:none}
+.badge .bb{display:block;color:#fff;font-size:19px;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.chips span{border:1px solid var(--line-s);color:var(--dim);border-radius:999px;
+ padding:7px 16px;font-size:14.5px}
 
-/* ---------- phone: every length is the real value from S in App.jsx ---------- */
-.phone{width:408px;background:var(--bg);border:9px solid #202A36;border-radius:40px;
- overflow:hidden;box-shadow:0 34px 80px rgba(0,0,0,.6);display:flex;flex-direction:column}
-.sc{display:flex;flex-direction:column;color:var(--ink);font-size:14px}
-.psb{display:flex;justify-content:space-between;color:var(--mute);font-size:11px;
- padding:8px 16px 0}
-.appBarRow{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
- padding:10px 14px 8px}
-.brandLeft{display:flex;align-items:center;gap:9px}
-.brandName{font-size:16px;font-weight:500;letter-spacing:-.2px}
-.iconBtn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--dim)}
-.ctxRow{min-height:50px;display:flex;align-items:center;justify-content:center;padding:4px 10px 10px}
-.monthNav{display:flex;align-items:center;gap:2px}
-.navBtn{color:var(--dim);font-size:26px;width:44px;height:44px;display:flex;
- align-items:center;justify-content:center;line-height:1}
-.monthPill{display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:0 12px;
- border-radius:999px;border:1px solid var(--line-s);color:var(--ink);font-size:14px;font-weight:500}
-.nextCard{background:var(--card2);border-radius:10px;margin:0 18px 16px;padding:14px 16px}
-.nextLabel{font-size:11px;color:var(--mute);margin-bottom:8px}
-.nextRow{display:flex;align-items:center;gap:10px}
-.nextTitle{font-size:15px;font-weight:500}
-.nextSub{font-size:13px;color:var(--dim);margin-top:8px}
-.chipLg{width:34px;height:34px;border-radius:5px;display:flex;align-items:center;
- justify-content:center;font-size:15px;font-weight:500;flex-shrink:0}
-.weekRow{display:grid;grid-template-columns:repeat(7,1fr);padding:0 12px}
-.weekLabel{text-align:center;font-size:11px;color:var(--mute);padding-bottom:8px}
-.rule{height:1px;background:var(--line);margin:0 12px}
-.pgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px 12px}
-.cell{height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;
- position:relative;border-radius:8px}
-.cell.today{border:2px solid var(--teal)}
-.dayNum{font-size:14px;font-variant-numeric:tabular-nums}
-.chip{width:24px;height:18px;border-radius:4px;margin-top:3px;display:flex;align-items:center;
- justify-content:center;font-size:10px;font-weight:500}
-.chipEmpty{width:24px;height:18px;margin-top:3px}
-.summary{text-align:center;font-size:12px;color:var(--mute);padding:14px 0}
-.tabBar{flex-shrink:0;display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);
- border-top:1px solid var(--line);padding:8px 0}
-.tabItem{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:48px;
- justify-content:center;color:var(--mute)}
-.tabItem.on{color:var(--teal)}
-.tabPill{width:56px;height:30px;border-radius:999px;display:flex;align-items:center;
- justify-content:center}
-.tabItem.on .tabPill{background:rgba(46,154,174,0.18)}
-.tabLabel{font-size:12px}
-
-/* ---- popout: a fragment lifted out of the phone, as on the store shots ---- */
-.stage{position:relative;flex:none;width:408px}
-.popout{position:absolute;top:126px;left:-16px;right:-16px;background:var(--card);
- border:2px solid var(--teal);border-radius:18px;padding:18px 20px;
- box-shadow:0 22px 55px rgba(0,0,0,.70)}
-.po-next .nextLabel{font-size:13px}
-.po-next .nextTitle{font-size:19px}
-.po-next .nextSub{font-size:15px}
-.po-next .chipLg{width:42px;height:42px;font-size:19px;border-radius:7px}
-
-/* ---------- sections ---------- */
 section{padding-bottom:96px}
 h2{font-size:clamp(28px,3.4vw,38px);font-weight:700;letter-spacing:-.025em;margin-bottom:14px}
-.sub{color:var(--dim);font-size:17.5px;max-width:580px;margin-bottom:38px}
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
-.card h3{font-size:17.5px;font-weight:650;margin-bottom:9px;display:flex;align-items:center;gap:10px}
-.card p{color:var(--dim);font-size:15.5px}
-.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.sub{color:var(--dim);font-size:17.5px;max-width:620px;margin-bottom:40px}
+.feat{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.fblock h3{font-size:20px;font-weight:650;margin-bottom:10px;display:flex;align-items:center;gap:11px}
+.fblock p{color:var(--dim);font-size:16px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:218px;gap:18px;
+ overflow-x:auto;padding-bottom:12px;scrollbar-width:thin}
+.strip figure{margin:0}
+.strip img{width:100%;border-radius:16px;border:1px solid var(--line);display:block}
+.strip figcaption{color:var(--mute);font-size:14px;margin-top:10px;text-align:center}
 .band{background:linear-gradient(145deg,#15202B,#121A23);border:1px solid var(--line);
- border-radius:22px;padding:62px 40px;text-align:center;margin-bottom:96px}
-.band h2{margin-bottom:16px}
-.band p{color:var(--dim);font-size:17.5px;max-width:520px;margin:0 auto}
-.plist{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
-.pitem{display:flex;gap:13px;align-items:flex-start;background:var(--card);
- border:1px solid var(--line);border-radius:13px;padding:19px 21px}
-.pitem svg{flex:none;margin-top:3px}
-.pitem span{color:var(--dim);font-size:15.5px}
-.price-note{color:var(--mute);font-size:15.5px;margin-top:22px}
-.amber{color:var(--amber)}
-
-/* ---------- article pages ---------- */
-.page{padding:64px 0 20px;max-width:760px}
-.page h1{font-size:clamp(32px,4.4vw,46px);font-weight:700;letter-spacing:-.028em;
- line-height:1.14;margin-bottom:18px}
-.page .lede{color:var(--dim);font-size:18.5px;max-width:620px}
-.page h2{font-size:21px;font-weight:650;margin:38px 0 10px;letter-spacing:-.01em}
-.page p,.page li{color:var(--dim);font-size:16.5px}
-.page ul{padding-left:21px;margin-top:10px}.page li{margin-bottom:9px}
-.updated{color:var(--mute);font-size:14.5px;margin-bottom:34px}
-.callout{background:var(--card);border:1px solid var(--line);border-radius:14px;
- padding:22px 24px;margin:28px 0}
-.callout p{color:var(--ink);margin:0}
+ border-radius:22px;padding:56px 40px;margin-bottom:96px}
+.band h2{text-align:center}
+.band .sub{margin:0 auto 34px;text-align:center}
+.pts{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.pt{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.pt b{display:block;font-size:16px;font-weight:650;margin-bottom:6px}
+.pt span{color:var(--dim);font-size:15px}
+.steps{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.step b{display:flex;align-items:center;justify-content:center;width:32px;height:32px;
+ border-radius:999px;background:rgba(46,154,174,.18);color:var(--teal);font-size:15px;
+ margin-bottom:14px}
+.step p{color:var(--dim);font-size:15.5px}
 .qa{border-bottom:1px solid var(--line);padding:24px 0}
 .qa:last-child{border-bottom:none}
 .qa h3{color:var(--ink);font-size:18px;font-weight:650;margin-bottom:9px}
 .qa p{color:var(--dim);font-size:16.5px}
-.cta-row{text-align:center;padding:14px 0 40px}
+.dev{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;
+ background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px}
+.dev-mark{width:72px;height:72px;border-radius:20px;background:var(--card2);
+ display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:700;
+ color:var(--teal);flex:none}
+.dev h2{font-size:27px;margin-bottom:12px}
+.dev p{color:var(--dim);font-size:16.5px;margin-bottom:12px}
+.dev-links{display:flex;gap:22px;flex-wrap:wrap;margin-top:6px}
+.apps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(204px,1fr))}
+.app{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);
+ border-radius:14px;padding:18px 20px}
+.app .ic{width:40px;height:40px;border-radius:11px;background:var(--card2);flex:none;
+ display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--teal);font-size:16px}
+.app b{display:block;font-size:16px;font-weight:650}
+.app span{color:var(--mute);font-size:14.5px}
+.app.self{border-color:var(--teal)}
+.close-cta{text-align:center;padding:62px 40px;background:linear-gradient(145deg,#15202B,#121A23);
+ border:1px solid var(--line);border-radius:22px;margin-bottom:96px}
+.close-cta h2{margin-bottom:12px}
+.close-cta p{color:var(--dim);font-size:17.5px;margin-bottom:30px}
 
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--line);padding:38px 0 70px;margin-top:20px}
-.ft{display:flex;flex-wrap:wrap;gap:16px 34px;justify-content:space-between;align-items:center}
-.ft a{color:var(--mute);font-size:14.5px}
-.ft a:hover{color:var(--dim)}
-.ft-l{color:var(--mute);font-size:14.5px}
-.ft-n{display:flex;gap:26px;flex-wrap:wrap}
+.page{padding:64px 0 20px;max-width:780px}
+.page h1{font-size:clamp(32px,4.4vw,46px);font-weight:700;letter-spacing:-.028em;
+ line-height:1.14;margin-bottom:18px}
+.page .lede{color:var(--dim);font-size:18.5px;max-width:640px}
+.page h2{font-size:23px;font-weight:650;margin:46px 0 14px;letter-spacing:-.012em;
+ scroll-margin-top:96px}
+.page h3{font-size:18px;font-weight:650;margin:26px 0 8px}
+.page p,.page li{color:var(--dim);font-size:16.5px}
+.page ul{padding-left:21px;margin-top:10px}.page li{margin-bottom:9px}
+.jump{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 8px;padding:0;list-style:none}
+.jump li{margin:0}
+.jump a{border:1px solid var(--line-s);border-radius:999px;padding:8px 16px;
+ font-size:14.5px;color:var(--dim)}
+.jump a:hover{color:var(--ink);border-color:var(--teal)}
+.updated{color:var(--mute);font-size:14.5px;margin-bottom:34px}
+.callout{background:var(--card);border:1px solid var(--line);border-radius:14px;
+ padding:22px 24px;margin:28px 0}
+.callout p{color:var(--ink);margin:0}
+
+footer{border-top:1px solid var(--line);padding:52px 0 70px;margin-top:20px}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;margin-bottom:42px}
+.ft-tag{color:var(--mute);font-size:14.5px;margin-top:14px;max-width:270px}
+.ft-col b{display:block;font-size:14px;font-weight:650;color:var(--ink);margin-bottom:14px}
+.ft-col a{display:block;color:var(--mute);font-size:14.5px;padding:5px 0}
+.ft-col a:hover{color:var(--dim)}
+.ft-bot{border-top:1px solid var(--line);padding-top:26px;color:var(--mute);font-size:14px;
+ display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
 
 @media (max-width:900px){
-  .wrap{padding:0 22px}
-  .hero{grid-template-columns:1fr;gap:52px;padding:62px 0 76px;text-align:center}
-  .hero .lede{margin-left:auto;margin-right:auto}
-  .get{justify-content:center}
-  .ticks{justify-content:center}
-  .stage{width:min(408px,100%);margin:0 auto}
-  .phone{width:100%}
-  .popout{left:-8px;right:-8px}
-  .nav{display:none}
-  .band{padding:48px 26px}
-  section{padding-bottom:72px}
+ .wrap{padding:0 22px}
+ .hero{grid-template-columns:1fr;gap:48px;padding:56px 0 72px;text-align:center}
+ .hero .lede{margin-left:auto;margin-right:auto}
+ .chips{justify-content:center}
+ .stage{width:min(408px,100%);margin:0 auto}
+ .phone{width:100%}.popout{left:-8px;right:-8px}
+ .nav{display:none}.menu{display:block}
+ .band,.close-cta{padding:44px 24px}
+ .dev{grid-template-columns:1fr;padding:28px}
+ .ft-top{grid-template-columns:1fr 1fr;gap:28px}
+ section{padding-bottom:72px}
+}
+
+.stage{position:relative;flex:none;width:408px}
+.phone{width:408px;border:9px solid #202A36;border-radius:40px;overflow:hidden;
+ box-shadow:0 34px 80px rgba(0,0,0,.6);background:var(--bg)}
+.phone img{display:block;width:100%}
+.popout{position:absolute;top:126px;left:-16px;right:-16px;background:var(--card);
+ border:2px solid var(--teal);border-radius:18px;padding:18px 20px;
+ box-shadow:0 22px 55px rgba(0,0,0,.70)}
+.po-l{font-size:13px;color:var(--mute);margin-bottom:8px}
+.po-r{display:flex;align-items:center;gap:12px}
+.po-c{width:42px;height:42px;border-radius:7px;display:flex;align-items:center;
+ justify-content:center;font-size:19px;font-weight:500;flex:none}
+.po-t{font-size:19px;font-weight:500}
+.po-s{font-size:15px;color:var(--dim);margin-top:8px}
+
+/* Grid items default to min-width:auto, which lets the 408px phone hold the
+   column open below 408px. An explicit floor lets it shrink. */
+.hero>*{min-width:0}
+/* Repeated after the phone rules above, because these must win on mobile. */
+@media (max-width:900px){
+ .stage{width:100%;max-width:408px;margin:0 auto;min-width:0}
+ .phone{width:100%;max-width:100%}
+ .popout{left:0;right:0}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="hdr"><div class="wrap"><div class="hdr-in">
   <a class="brand" href="/"><svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true">
 <rect width="64" height="64" rx="16" fill="#212B36"/>
@@ -191,12 +198,29 @@ footer{border-top:1px solid var(--line);padding:38px 0 70px;margin-top:20px}
 <circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
 <circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></a>
   <nav class="nav"><a href="/#features">Features</a><a href="/faq/">FAQ</a><a href="/support/">Support</a><a class="pill" href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Get the app</a></nav>
+  <details class="menu"><summary>Menu</summary><div class="menu-p"><a href="/#features">Features</a><a href="/faq/">FAQ</a><a href="/support/">Support</a>
+    <a href="/privacy/">Privacy</a><a href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Get the app</a></div></details>
 </div></div></div>
-<div class="wrap">
+<main id="main"><div class="wrap">
 <div class="page"><h1>Privacy Policy</h1><div class="updated">Last updated: 18 October 2026</div><div class="callout"><p>RotaWake does not collect any data. Everything you enter stays on your phone, and nothing is sent to us or anyone else.</p></div><h2>What RotaWake stores</h2><p>Your shift patterns, rosters, shift types, day changes, notes and settings are saved in the app&rsquo;s own storage on your device. They are not uploaded, backed up to any server, or shared with anyone.</p><h2>No account</h2><p>There is no sign-up and no login. RotaWake never asks for your name, email address, phone number or any other personal detail.</p><h2>No tracking or advertising</h2><p>RotaWake contains no analytics, no advertising and no third-party tracking of any kind. Your use of the app is not measured or reported.</p><h2>No internet connection</h2><p>RotaWake works entirely offline. It does not send or receive data over the internet.</p><h2>Notifications</h2><p>Shift reminders are scheduled by your phone&rsquo;s own Android system and shown on the device. No reminder information leaves your phone.</p><h2>Purchases</h2><p>If RotaWake offers a paid upgrade, the payment is handled entirely by Google Play. RotaWake receives only whether a purchase exists. Your payment details are never seen by the app or its developer.</p><h2>Files you create</h2><p>Backup and export files are created only when you ask for one, and go wherever you choose to send them. Once a file leaves the app, it is governed by whichever service you shared it with.</p><h2>Deleting your data</h2><p>You can erase everything at any time from Settings, then Reset everything. Uninstalling RotaWake also removes all of its data from your phone. Because nothing is stored elsewhere, there is nothing left to delete.</p><h2>Children</h2><p>RotaWake is a work scheduling tool intended for adults. It collects no data from anyone, including children.</p><h2>Changes to this policy</h2><p>If this policy changes, the updated version will be published on this page with a new date above.</p><h2>Contact</h2><p>Questions about this policy can be sent to <a href="mailto:satheeshmankulam@gmail.com">satheeshmankulam@gmail.com</a>.</p></div>
-<footer><div class="ft">
-  <span class="ft-l">RotaWake is made by an independent developer, not a company.</span>
-  <span class="ft-n"><a href="/faq/">FAQ</a><a href="/support/">Support</a><a href="/privacy/">Privacy</a></span>
-</div></footer>
+</div></main>
+<footer><div class="wrap">
+<div class="ft-top">
+  <div><div class="brand"><svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true">
+<rect width="64" height="64" rx="16" fill="#212B36"/>
+<circle cx="32" cy="15" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="19.98" r="4.5" fill="#E0A340"/>
+<circle cx="49" cy="32" r="4.5" fill="#E0A340"/><circle cx="44.02" cy="44.02" r="4.5" fill="#E0A340"/>
+<circle cx="32" cy="49" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="44.02" r="4.5" fill="#3A4753"/>
+<circle cx="15" cy="32" r="4.5" fill="#3A4753"/><circle cx="19.98" cy="19.98" r="4.5" fill="#3A4753"/>
+<circle cx="32" cy="32" r="3" fill="#2E9AAE"/></svg><span>RotaWake</span></div>
+    <p class="ft-tag">A shift work calendar made for people whose week doesn&rsquo;t look like a week.</p></div>
+  <div class="ft-col"><b>App</b><a href="/#features">Features</a>
+    <a href="/4-on-4-off-shift-calendar-app/">Guide</a><a href="https://play.google.com/store/apps/details?id=com.satheesh.roster">Google Play</a></div>
+  <div class="ft-col"><b>Help</b><a href="/faq/">FAQ</a><a href="/support/">Support</a>
+    <a href="/privacy/">Privacy policy</a></div>
+  <div class="ft-col"><b>More apps</b><a href="https://play.google.com/store/apps/details?id=com.familydose.app">FamilyDose</a><a href="https://play.google.com/store/apps/details?id=com.satheesh.spendcast">SpendCast</a><a href="https://satheeshmankulam.com">satheeshmankulam.com</a></div>
 </div>
+<div class="ft-bot"><span>&copy; 2026 Satheesh Mankulam</span>
+<span>RotaWake is a personal tool, not employment or payroll advice.</span></div>
+</div></footer>
 </body></html>
